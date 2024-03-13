@@ -1,0 +1,31 @@
+<main>
+<h1>réservez votre place</h1>
+     
+     <?php require "templates/partials/header.phtml"; ?> 
+     
+    <form action="index.php?route=Connexion" method="post">
+        
+        <label for="nom">Votre nome et prénom::</label><br>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+        <label for="email">Votre Email :</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="telephone">Votre Téléphone :</label><br>
+        <input type="tel" id="telephone" name="telephone" required><br><br>
+        
+        <label for="nombre_personnes">Nombre de personnes :</label><br>
+        <input type="number" id="nombre_personnes" name="nombre_personnes" min="1" required><br><br>
+        
+        <label for="date">Date de réservation :</label><br>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="heure">Heure de réservation :</label><br>
+        <input type="time" id="heure" name="heure" required><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message"></textarea><br><br>
+
+        <input type="submit" value="Réserver">
+    </form>
+</main>

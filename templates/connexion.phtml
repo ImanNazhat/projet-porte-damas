@@ -1,0 +1,15 @@
+<main>
+     <?php require "templates/partials/header.phtml"; ?>
+     
+    <h1>Connexion</h1>
+    <form action="index.php?route=Connexion" method="post">
+        
+        <label for="email">Votre Email :</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Votre mot de passe :</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Se connecter">
+    </form>
+</main>
