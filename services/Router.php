@@ -2,7 +2,7 @@
 
 class Router {
         
-        
+     
         public function handleRequest(array $get) : void {
             
                $authController = new AuthController();
@@ -10,30 +10,30 @@ class Router {
                  
                 if (isset($get["route"]))
                 {
-                  if ($get["route"] === "qui-sommes-nous") {
+                  if ($get["route"] === "about") {
                       
                     $pageController->about();
                 } 
-                else if($get["route"] === "nos-plats") {
+                else if($get["route"] === "Nos-plats") {
                     
                     $pageController->menu();
                 }
-                else if($get["route"] === "reserver") {
+                else if($get["route"] === "Reserver") {
                     
                     $authController->reserver();
                 }
-                else if($get["route"] === "votre-avis") {
+                else if($get["route"] === "Votre-avis") {
                     
                     $authController->avis();
                 } 
-                 else if($get["route"] === "connexion") {
+                 else if($get["route"] === "Connexion") {
                      
-                    
                     $authController->connexion();
+                    
                 } 
-                else {
+        }
+        else {
                     $pageController->about();
                 }
-        }
     } 
 }

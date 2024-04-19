@@ -50,3 +50,4 @@ class UserManager
              $this->users = $userList;
     }
 }
+                

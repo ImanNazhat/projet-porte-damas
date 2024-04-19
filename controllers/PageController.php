@@ -5,11 +5,11 @@ class PageController extends AbstractController
                 {
                     public function about() : void
                     {
-                     $this->render("about", []);
+                     $this->render("main/about.html.twig", []);
                     }
                     
                     public function menu() : void
                     {
-                     $this->render("menu", []);
+                     $this->render("main/menu.html.twig", []);
                     }
                 }
