@@ -1,0 +1,125 @@
+{% extends "base-admin.html.twig" %}
+
+{% block body %}
+<main class=container>
+	<h1 class="mb-5">{{ title }}</h1>
+
+        <a href="index.php?route=admin-creer-menu" class="btn btn-primary">Ajouter <span class="bi bi-plus-circle-fill"></span></a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        pictureUrl
+                    </th>
+                    <th>
+                        vegetarian
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for menu in  menus %}
+        <tr>
+           
+                    <td>
+                        {{ menu.id }}
+                    </td>
+                    <td>
+                        {{  menu.name }}
+                    </td>
+                    <td>
+                        {{  menu.discription }}
+                    </td>
+                    <td>
+                        <figure>
+                            <img src="{{  menu.pictureUrl }}" width=80/>
+                        </figure>
+                    </td>
+                    <td>
+                        {{  menu.vegetarian }}
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-primary"><span class="bi bi-eye-fill"></span></a>
+                        <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" data-url="index.php?route=admin-modifier-menu&menu_id={{ menu.id }}"><span class="bi bi-pencil-fill"></span></a>
+                        <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-url="index.php?route=admin-supprimer-menu&menu_id={{ menu.id }}"><span class="bi bi-trash3-fill"></span></a>
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+<th>
+                    #
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                        pictureUrl
+                    </th>
+                    <th>
+                        vegetarian
+                    </th>
+                <th>
+                    Actions
+                </th>
+                 
+            </tr>
+            </tfoot>
+        </table>
+        <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modifier</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Êtes-vous sûr-e de vouloir modifier ?
+                        </p>
+                    </div>
+                   <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger" id="editConfirmButton" >Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Êtes-vous sûr-e de vouloir supprimer ?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger" id="deleteConfirmButton">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+{% endblock %}

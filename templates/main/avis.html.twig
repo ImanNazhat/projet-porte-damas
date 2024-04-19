@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+
+<main id="avis" class=avis>
+  
+    <form method="POST" action="index.php?route=Votre-avis">
+        <h2>Vous avez nous visiter? votre avis nous intéresse</h2>
+        
+                <label for="nom">Votre Nom:</label><br>
+                <input type="text" id="nom" name="nom" required><br><br>
+        
+                <label for="email">Votre Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+        
+                <label for="avis">Votre avis :</label><br>
+                <textarea id="avis" name="avis"required></textarea><br><br>
+        
+                <input type="submit" value="publier">
+    </form>
+    
+</main>
+
+ {% include "partials/footer.html.twig" %}
+ 
+ {% endblock %}
+	  

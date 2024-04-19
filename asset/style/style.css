@@ -1,0 +1,158 @@
+/* start global rules */
+
+body * {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;  
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+	line-height: 1.5;
+	font-size: 1.8rem; 
+	background-color:#F4EAD5;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+main {
+	padding-left:15px;
+	padding-right:15px;
+	margin-left:auto;
+	margin-right:auto;
+  display: flex;
+  align-items: center; 
+}
+
+@media (min-width: 768px) {
+      .about {
+        width: 750px; 
+        
+      }
+    }
+@media (min-width:992px) {
+      .about {
+        width:970px; 
+        
+      }
+    }
+@media (min-width:1200px) {
+      .about {
+        width: 1170px; 
+        
+      }
+    } 
+/*end global rules*/
+
+header {
+  	background:#E6D5B1;
+  	display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size: 2rem; 
+}
+
+.logo {
+	width: 20%;
+	margin:0;
+}
+
+nav ul {
+    display: flex;
+    justify-content:space-around;
+  	text-align: center;
+  	margin:0;
+  	padding:0;
+  	list-style: none;
+  	color: #242743;
+  	font-family: 'Merienda', cursive;
+}
+nav a {
+	font-weight: bold;
+	text-decoration: none;
+	padding: 1rem 2rem;
+	color: #242743;
+}
+
+.about{
+	  display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom:5rem;
+}
+
+h1, 
+h2, 
+h3 {
+	font-family: 'Merienda', cursive;
+	font-weight: bold;
+} 
+
+
+.title {
+  text-align: center; 
+  font-size: 5rem;
+  color: #242743;
+  
+}
+
+
+article {
+  	display: grid;
+  	grid-template-columns: repeat(3, 1fr);
+  	grid-template-columns: repeat(3, 1fr);
+ 
+}
+
+.image {
+   width:40%; 
+   z-index:1;
+  grid-column: 1 / 5;
+  grid-row: 2;
+   
+}
+
+.container {
+  text-align:left;
+  padding:100px;
+  background-color:#E6D5B1;
+  grid-column: 2 / 5;
+  grid-row: 1 /4;
+  color: #242743;
+}
+
+.container h2 {
+  padding-bottom:2rem;
+}
+
+.menu {
+  padding:100px;
+  
+  grid-column: 2 / 5;
+  grid-row: 1 /4;
+  color: #242743;
+}
+
+footer {
+  	background:#E6D5B1;
+  	display:flex;
+    justify-content:space-around;
+    color: #242743;
+  	font-family: 'Nunito', cursive;
+    align-items:center;
+   
+    font-size:1.5rem;
+}
+footer aside {
+	padding: 5rem;
+	text-align: center;
+}
+
+footer h3 {
+	font-size: 2.5rem;
+	padding-left: 1rem;
+
+}
