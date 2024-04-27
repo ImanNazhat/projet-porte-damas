@@ -7,33 +7,113 @@ class Router {
             
                $authController = new AuthController();
                $pageController = new PageController();
+               $menuController = new MenuController();
+               $adminController = new AdminController();
+               $avisController = new AvisController();
                  
                 if (isset($get["route"]))
                 {
-                  if ($get["route"] === "about") {
+                if ($get["route"] === "about") {
                       
                     $pageController->about();
                 } 
                 else if($get["route"] === "Nos-plats") {
                     
-                    $pageController->menu();
+                    $menuController->Menu();
                 }
                 else if($get["route"] === "Reserver") {
                     
-                    $authController->reserver();
+                    $authController->Reservation();
+                }
+                
+                else if($get["route"] === "admin-reservation") {
+                    
+                    $adminController->AdminReservation();
+                }
+                else if($get["route"] === "check-creer-reservation"){
+                    
+                    $authController->checkCreateReservation();
                 }
                 else if($get["route"] === "Votre-avis") {
                     
-                    $authController->avis();
+                    $avisController->Avis();
                 } 
                  else if($get["route"] === "Connexion") {
                      
                     $authController->connexion();
                     
                 } 
-        }
-        else {
+                else if ($get["route"] === "check-connexion")
+                {
+                    $authController->checkConnexion();
+                }
+                
+                else if ($get["route"] === "admin-avis") {
+                      
+                    $adminController->AdminAvis();
+                }
+                else if($get["route"] === "creer-avis"){
+                    
+                    $avisController->createAvis();
+                }
+                 else if($get["route"] === "check-creer-avis"){
+                    
+                    $avisController->checkCreateAvis();
+                }
+                else if($get["route"] === "admin-supprimer-avis"){
+                    
+                    if (isset($get["avis_id"])) {
+                        
+                    $avisId = (int)$get["avis_id"];
+                    $avisController->delete($avisId);
+                    }
+                    else
+                    {
+                      echo "avis_id n'existes pas pour la route admin-supprimer-avis";
+                    }
+                }
+                
+                else if($get["route"] === "admin-menu") {
+                    
+                    $adminController->AdminMenu();
+                }
+                
+                else if($get["route"] === "admin-creer-menu"){
+                    
+                    $menuController->create();
+                }
+                else if($get["route"] === "admin-check-creer-menu"){
+                    
+                    $menuController->checkCreate();
+                }
+                else if($get["route"] === "admin-modifier-menu"){
+                    
+                    if (isset($get["menu_id"])) {
+                        
+                    $menuId = (int)$get["menu_id"];
+                    $menuController->edit($menuId);
+                    }
+                }
+                else if($get["route"] === "admin-check-modifier-menu"){
+                    
+                    $menuController->checkEdit();
+                }
+                else if($get["route"] === "admin-supprimer-menu"){
+                    
+                    if (isset($get["menu_id"])) {
+                        
+                    $menuId = (int)$get["menu_id"];
+                    $menuController->delete($menuId);
+                    }
+                    else
+                    {
+                      echo "menu_id n'existes pas pour la route admin-supprimer-menu";
+                    }
+                }
+            } 
+            else {
                     $pageController->about();
                 }
-    } 
+        }
+            
 }

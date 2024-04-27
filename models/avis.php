@@ -1,11 +1,11 @@
 <?php
 
-class avis
+class Avis
 {
     private ? int $id = null;
 
    
-    public function __construct(private string $username, private string $email, private string $avis)
+    public function __construct(private string $userName, private string $email, private string $comment)
     {
 
     }
@@ -20,13 +20,13 @@ class avis
     }
     
     
-    public function getUsername(): string
+    public function getUserName(): string
     {
-        return $this->username;
+        return $this->userName;
     }
-    public function setUsername(string $username): void
+    public function setUserName(string $userName): void
     {
-        $this->username = $username;
+        $this->userName = $userName;
     }
     
     
@@ -40,12 +40,12 @@ class avis
     }
     
     
-    public function getAvis(): string
+    public function getComment(): string
     {
-        return $this->avis;
+        return $this->comment;
     }
-    public function setAvis(string $avis): void
+    public function setComment(string $comment): void
     {
-        $this->avis = $avis;
+        $this->comment = $comment;
     }
 }

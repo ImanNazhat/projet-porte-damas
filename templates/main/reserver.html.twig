@@ -7,10 +7,10 @@
 <main class=reserver>
         <h1>réservez votre place</h1>
       
-    <form action="index.php?route=Connexion" method="post">
+    <form action="index.php?route=check-creer-reservation" method="post">
         
-        <label for="nom">Votre nome et prénom::</label><br>
-        <input type="text" id="nom" name="nom" required><br><br>
+        <label for="name">Votre nome et prénom::</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
         <label for="email">Votre Email :</label><br>
         <input type="email" id="email" name="email" required><br><br>
@@ -22,7 +22,7 @@
         <input type="number" id="nombre_personnes" name="nombre_personnes" min="1" required><br><br>
         
         <label for="date">Date de réservation :</label><br>
-        <input type="date" id="date" name="date" required><br><br>
+        <input type="Date" id="date" name="date" required><br><br>
 
         <label for="heure">Heure de réservation :</label><br>
         <input type="time" id="heure" name="heure" required><br><br>

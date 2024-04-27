@@ -1,0 +1,72 @@
+{% extends "base-admin.html.twig" %}
+
+{% block body %}
+<main class=container>
+	<h1 class="mb-5">{{ title }}</h1>
+
+        <a href="index.php?route=admin-reservation" class="btn btn-primary">Ajouter <span class="bi bi-plus-circle-fill"></span></a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Téléphone
+                    </th>
+                    <th>
+                        Nombre de personne
+                    </th>
+                    <th>
+                        la date
+                    </th>
+                    <th>
+                       L'heure
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for reservation in reservations %}
+        <tr>
+           
+                    <td>
+                        {{ reservation.id }}
+                    </td>
+                    <td>
+                        {{ reservation.name }}
+                    </td>
+                    <td>
+                        {{ reservation.email }}
+                    </td>
+                    <td>
+                        {{ reservation.telephone }}
+                    </td>
+                    <td>
+                        {{ reservation.number }}
+                    </td>
+                    <td>
+                        {{ reservation.date }}
+                    </td>
+                    <td>
+                        {{ reservation.hour }}
+                    </td>
+                    <td>
+                        {{ reservation.message }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+</main>
+{% endblock %}

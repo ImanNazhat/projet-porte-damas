@@ -1,11 +1,11 @@
 <?php
 
-class resever
+class Reservation
 {
     private ? int $id = null;
 
    
-    public function __construct(private string $name, private string $email, private string $telephone, private string $number, private Date $date, private Time $time, private string $message)
+    public function __construct(private string $name, private string $email, private string $telephone, private string $number, private string $date, private string $time, private string $message)
     {
 
     }
@@ -60,23 +60,23 @@ class resever
     }
     
     
-    public function getDate(): Date
+    public function getDate(): string
     {
         return $this->date;
     }
-    public function setDate(Date $date): void
+    public function setDate(string $date): void
     {
         $this->date = $date;
     }
     
     
-    public function getHour(): Time
+    public function getTime(): string
     {
-        return $this->hour;
+        return $this->time;
     }
-    public function setHour(Time $hour): void
+    public function setTime(string $time): void
     {
-        $this->hour = $hour;
+        $this->time = $time;
     }
     
     

@@ -8,8 +8,4 @@ class PageController extends AbstractController
                      $this->render("main/about.html.twig", []);
                     }
                     
-                    public function menu() : void
-                    {
-                     $this->render("main/menu.html.twig", []);
-                    }
                 }

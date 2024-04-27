@@ -1,0 +1,100 @@
+<?php
+
+class MenuManager extends AbstractManager
+{
+    public function findAll() : array
+    {
+        $query = $this->db->prepare('SELECT * FROM dishes');
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $dishes = [];
+
+        foreach($result as $item)
+        {
+            $dish = new Menu($item["name"], $item["description"], $item["picture_url"], $item["categories_id"]);
+            $dish->setId($item["id"]);
+            $dishes[] = $dish;
+        }
+        return $dishes;
+    }
+
+     public function findOne(int $id) : ?Menu // il faut mettre la nom de ma classe models
+    {
+        $query = $this->db->prepare('SELECT * FROM dishes WHERE id=:id');
+
+         $parameters = [
+            "id" => $id
+        ];
+
+        $query->execute($parameters);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if($result)
+        {
+            $dish = new Menu($result["name"], $result["description"], $result["picture_url"],$result["categories_id"]);
+            $dish->setId($result["id"]);
+            return $dish;
+
+
+        }
+        return null;
+    }
+    public function findVegetarian() : array
+    {
+        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:2');
+        $query->execute(array('2' => "2"));
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $categoriesId = [];
+        
+        foreach($result as $item)
+        {
+            $dish = new Menu($item["name"], $item["description"], $item["picture_url"],$item["categories_id"]);
+            $dish->setId($item["id"]);
+            $categoriesId[] = $item;
+        }
+        return $categoriesId;
+       
+    }
+    public function create(Menu $menu) : Menu 
+    {
+        $query = $this->db->prepare('INSERT INTO dishes (id, name, description,picture_url,categories_id) VALUES (NULL, :name,:description, :picture_url , :categories_id)');
+        $parameters = [
+            "name" => $menu->getName(),
+            "description" => $menu->getDiscription(),
+            "picture_url" => $menu->getPictureUrl(),
+            "categories_id" => $menu->getCategoriesId()
+        ];
+
+        $query->execute($parameters);
+
+        $menu->setId($this->db->lastInsertId());
+
+        return $menu;
+    }
+    public function delete(int $id) : void 
+    {
+        $query = $this->db->prepare('DELETE FROM dishes WHERE id=:id');
+        
+        $query->execute(array('id' => $id));
+    }
+    
+    public function edit(Menu $menu) : Menu
+    {
+        
+        $query = $this->db->prepare('UPDATE dishes SET name=:name,description=:description, picture_url=:picture_url, categories_id=:categories_id WHERE id=:id');
+        $parameters = [
+            "name" => $menu->getName(),
+            "description" => $menu->getDiscription(),
+            "picture_url" => $menu->getPictureUrl(),
+            "categories_id" => $menu->getCategoriesId(),
+            "id" => $menu->getId()
+        ];
+         
+        $query->execute($parameters);
+       
+       
+        
+        return $menu;
+    }
+    
+}

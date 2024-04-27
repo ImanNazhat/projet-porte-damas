@@ -2,50 +2,23 @@
 
 {% block main %}	
 <main class=menu>
+
+		    	
 		    <section>
-		        <h3>Plats végétariens</h3>
-		        <article>
-		            <h4>Baba Ghanoge</h4>
-		            <img src="../assets/img/babaghanog.png">
-		            <p>Aubergine - Tomate - Persil - Oignon - Ail - Huile d'olive - Grenade sauce</p>
-		        </article>
-		        <article>
-		            <h4>Burak</h4>
-		            <img src="../assets/img/burak.jpg">
-		            <p>Burak au fromage</p>
-		        </article>
-		        <article>
-		            <h4>Falafel</h4>
-		            <img src="../assets/img/falafel.jpg">
-		            <p>Pois chiches - Persil - Ail - Oignon</p>
-		        </article>
-		        <article>
-		            <h4>Fata</h4>
-		            <img src="../assets/img/fata.jpg">
-		            <p>Pois chiches - Bain syrienne - yaourt</p>
-		        </article>
-		        <article>
-		            <h4></h4>
-		            <img src="">
-		            <p></p>
-		        </article>
+		    	{% for menu in  menus %}
+		    	
+		        <h3>{{  menu.vegetarian }}</h3>
+		        
+		            <h4>{{  menu.name }}</h4>
+		            <figure>
+                            <img src="{{  menu.pictureUrl }}"width=80/>
+                        </figure>
+                        
+		            <p>{{  menu.discription }}</p>
+		        {% endfor %}
+		       
 		    </section>
-		    <section>
-		        <h3>Plats de viande</h3>
-		        <article>
-		            <h4></h4>
-		            <img src="">
-		            <p></p>
-		        </article>
-		    </section>
-		    <section>
-		        <h3>Dessert</h3>
-		        <article>
-		            <h4></h4>
-		            <img src="">
-		            <p></p>
-		        </article>
-		    </section>
+		    
 		</main>	
  {% endblock %}
 	  

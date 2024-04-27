@@ -4,21 +4,31 @@
 
 <main id="avis" class=avis>
   
-    <form method="POST" action="index.php?route=Votre-avis">
+    <form method="post" action="index.php?route=check-creer-avis">
         <h2>Vous avez nous visiter? votre avis nous intéresse</h2>
         
-                <label for="nom">Votre Nom:</label><br>
-                <input type="text" id="nom" name="nom" required><br><br>
+                <label for="username">Votre Nom:</label><br>
+                <input type="text" id="username" name="username" required><br><br>
         
                 <label for="email">Votre Email:</label><br>
                 <input type="email" id="email" name="email" required><br><br>
         
-                <label for="avis">Votre avis :</label><br>
-                <textarea id="avis" name="avis"required></textarea><br><br>
+                <label for="comment">Votre avis :</label><br>
+                <textarea id="comment" name="comment"required></textarea><br><br>
         
                 <input type="submit" value="publier">
     </form>
-    
+     
+    <section>
+		    	{% for avis in aviss %}
+		    	
+		        <h3>{{  avis.userName }}</h3>
+		        
+		        <p>{{  avis.comment }}</p>
+		        
+		        {% endfor %}
+		       
+		    </section>
 </main>
 
  {% include "partials/footer.html.twig" %}
