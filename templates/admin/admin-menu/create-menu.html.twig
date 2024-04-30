@@ -3,7 +3,7 @@
 {% block body %}
 <main class="container py-5">
             <h1 class="mb-5">creat menu</h1>
-            <form action="index.php?route=admin-check-creer-menu" method="post" class="mt-3">
+            <form action="index.php?route=admin-check-creer-menu" method="post" class="mt-3" enctype="multipart/form-data">
                 <fieldset class="mb-4">
                     <label for="name" class="form-label">
                         Name du plat
@@ -18,9 +18,10 @@
                 </fieldset>
                 <fieldset class="mb-4">
                     <label for="text" class="form-label">
-                        Image URL
+                        Image 
                     </label>
-                    <input id="image-url" name="image-url" type="text" class="form-control" />
+                    <input id="image" name="image" type="file" class="form-control"/>
+                    
                 </fieldset>
 <fieldset class="mb-4">
                     <label for="select" class="form-label">
@@ -34,7 +35,7 @@
                     </select>
                 </fieldset>
                 <fieldset>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <input type="submit" name="submit" class="btn btn-primary" value ="Create" />
                 </fieldset>
                 </form>
 

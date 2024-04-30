@@ -5,7 +5,7 @@ class Menu
     private ? int $id = null;
 
    
-    public function __construct(private string $name, private string $discription,private string $pictureUrl, private string $categoriesId)
+    public function __construct(private string $name, private string $discription,private string $picture, private string $categoriesId)
     {
 
     }
@@ -44,15 +44,15 @@ class Menu
         $this->discription = $discription;
     }
     
-    public function getPictureUrl(): string
+    public function getPicture(): string
     {
-        return $this->pictureUrl;
+        return $this->picture;
     }
 
    
-    public function setPictureUrl(string $pictureUrl): void
+    public function setPicture(string $picture): void
     {
-        $this->pictureUrl = $pictureUrl;
+        $this->picture = $picture;
     }
     
     public function getCategoriesId(): string

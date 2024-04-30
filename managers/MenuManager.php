@@ -11,7 +11,7 @@ class MenuManager extends AbstractManager
 
         foreach($result as $item)
         {
-            $dish = new Menu($item["name"], $item["description"], $item["picture_url"], $item["categories_id"]);
+            $dish = new Menu($item["name"], $item["description"], $item["picture"], $item["categories_id"]);
             $dish->setId($item["id"]);
             $dishes[] = $dish;
         }
@@ -31,7 +31,7 @@ class MenuManager extends AbstractManager
 
         if($result)
         {
-            $dish = new Menu($result["name"], $result["description"], $result["picture_url"],$result["categories_id"]);
+            $dish = new Menu($result["name"], $result["description"], $result["picture"],$result["categories_id"]);
             $dish->setId($result["id"]);
             return $dish;
 
@@ -48,7 +48,7 @@ class MenuManager extends AbstractManager
         
         foreach($result as $item)
         {
-            $dish = new Menu($item["name"], $item["description"], $item["picture_url"],$item["categories_id"]);
+            $dish = new Menu($item["name"], $item["description"], $item["picture"],$item["categories_id"]);
             $dish->setId($item["id"]);
             $categoriesId[] = $item;
         }
@@ -57,11 +57,11 @@ class MenuManager extends AbstractManager
     }
     public function create(Menu $menu) : Menu 
     {
-        $query = $this->db->prepare('INSERT INTO dishes (id, name, description,picture_url,categories_id) VALUES (NULL, :name,:description, :picture_url , :categories_id)');
+        $query = $this->db->prepare('INSERT INTO dishes (id, name, description,picture,categories_id) VALUES (NULL, :name,:description, :picture , :categories_id)');
         $parameters = [
             "name" => $menu->getName(),
             "description" => $menu->getDiscription(),
-            "picture_url" => $menu->getPictureUrl(),
+            "picture" => $menu->getPicture(),
             "categories_id" => $menu->getCategoriesId()
         ];
 
@@ -81,11 +81,11 @@ class MenuManager extends AbstractManager
     public function edit(Menu $menu) : Menu
     {
         
-        $query = $this->db->prepare('UPDATE dishes SET name=:name,description=:description, picture_url=:picture_url, categories_id=:categories_id WHERE id=:id');
+        $query = $this->db->prepare('UPDATE dishes SET name=:name,description=:description, picture=:picture, categories_id=:categories_id WHERE id=:id');
         $parameters = [
             "name" => $menu->getName(),
             "description" => $menu->getDiscription(),
-            "picture_url" => $menu->getPictureUrl(),
+            "picture" => $menu->getPicture(),
             "categories_id" => $menu->getCategoriesId(),
             "id" => $menu->getId()
         ];

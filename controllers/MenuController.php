@@ -37,20 +37,33 @@ class MenuController extends AbstractController
                     
                     public function checkCreate() : void{
                         
-                        if(isset($_POST["name"]) && isset($_POST["Description"]) && isset($_POST["image-url"]) && isset($_POST["select"]))
+                        if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
                             {
                                 $name = $_POST["name"];
                                 $description = $_POST["Description"];
-                                $imageUrl = $_POST["image-url"];
                                 $select = $_POST["select"];
                                 
-                                $menu = new Menu($name, $description, $imageUrl,$select);
+                                // Traitement du fichier téléchargé
+                                $image_tmp_name = $_FILES["image"]["tmp_name"];
+                                $image_name = basename($_FILES["image"]["name"]);
+                                $target_dir = "assets/img/"; 
+                                $target_file = $target_dir . $image_name;
+                        
+                                if(move_uploaded_file($image_tmp_name, $target_file)) {
+                                    // Le fichier a été téléchargé avec succès, vous pouvez maintenant créer l'objet Menu
+                                    $menu = new Menu($name, $description, $target_file ,$select);
                                 
-                                $menuManager = new MenuManager();
+                                    $menuManager = new MenuManager();
+                                    
+                                    $createdMenu = $menuManager->create($menu);
+                                    
+                                    $this->redirect("index.php?route=admin-menu");
+                            
+                                } else {
+                                    echo "Une erreur s'est produite lors du téléchargement du fichier.";
+                                }
+                                                        
                                 
-                                $createdMenu = $menuManager->create($menu);
-                                
-                                $this->redirect("index.php?route=admin-menu");
                             }
                     }
                     
@@ -69,15 +82,22 @@ class MenuController extends AbstractController
                     
                     public function checkEdit() : void{
                         
-                        if(isset($_POST["name"]) && isset($_POST["Description"]) && isset($_POST["image-url"]) && isset($_POST["select"]) && isset($_POST["id"]))
+                        if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
                             {
                                 $name = $_POST["name"];
                                 $description = $_POST["Description"];
-                                $imageUrl = $_POST["image-url"];
                                 $select = $_POST["select"];
                                 $id = $_POST["id"];
                                 
-                                $menu = new Menu($name, $description, $imageUrl,$select,$id);
+                                // Traitement du fichier téléchargé
+                                $image_tmp_name = $_FILES["image"]["tmp_name"];
+                                $image_name = basename($_FILES["image"]["name"]);
+                                $target_dir = "assets/img/"; 
+                                $target_file = $target_dir . $image_name;
+                                
+                                if(move_uploaded_file($image_tmp_name, $target_file)) {
+                                    
+                                $menu = new Menu($name, $description, $target_file,$select,$id);
                                 
                                 $menu->setId($id);
                                 
@@ -86,6 +106,10 @@ class MenuController extends AbstractController
                                 $editMenu = $menuManager->edit($menu);
                                 
                                 $this->redirect("index.php?route=admin-menu");
+                                } 
+                                else {
+                                    echo "Une erreur s'est produite lors du téléchargement du fichier.";
+                                }
                             }
                     }
                     
