@@ -48,6 +48,11 @@ class Router {
                     $authController->checkConnexion();
                 }
                 
+                else if ($get["route"] === "admin-edit")
+                {
+                    $adminController->AdminEdit();
+                }
+                
                 else if ($get["route"] === "admin-avis") {
                       
                     $adminController->AdminAvis();

@@ -5,7 +5,7 @@ class User
     private ? int $id = null;
 
    
-    public function __construct(private string $email, private string $password)
+    public function __construct(private string $username ,private string $email, private string $password)
     {
 
     }
@@ -18,7 +18,15 @@ class User
     {
         $this->id = $id;
     }
-
+    
+    public function getUserName(): string
+    {
+        return $this->username;
+    }
+    public function setUserName(string $username): void
+    {
+        $this->username = $username;
+    }
 
     public function getEmail(): string
     {

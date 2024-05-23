@@ -4,12 +4,19 @@
 
 {% block main %}
 
+ {% if error is defined %}
+        <div class="error-message" >
+            {{ error }}
+        </div>
+    {% endif %}
+    
+
 <main class=reserver>
-        <h1>réservez votre place</h1>
+        
       
     <form action="index.php?route=check-creer-reservation" method="post">
-        
-        <label for="name">Votre nome et prénom::</label><br>
+        <h1>réservez votre place</h1>
+        <label for="name">Votre nome et prénom:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
         <label for="email">Votre Email :</label><br>
@@ -30,7 +37,7 @@
         <label for="message">Message:</label><br>
         <textarea id="message" name="message"></textarea><br><br>
 
-        <input type="submit" value="Réserver">
+        <input type="submit" value="Réserver" class=bouton>
     </form>
 </main>
 

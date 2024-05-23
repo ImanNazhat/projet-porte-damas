@@ -1,24 +1,30 @@
 {% extends "base.html.twig" %}
 
-{% block main %}	
+{% block main %}
+
 <main class=menu>
 
-		    	
-		    <section>
-		    	{% for menu in  menus %}
-		    	
-		        <h3>{{  menu.vegetarian }}</h3>
-		        
-		            <h4>{{  menu.name }}</h4>
-		            <figure>
-                            <img src="{{  menu.picture }}"width=80/>
-                        </figure>
-                        
-		            <p>{{  menu.discription }}</p>
-		        {% endfor %}
-		       
-		    </section>
+		    	 {#<h3>{{  menu.vegetarian|escape }}</h3>#}
+		    	 {# <h3>{{  menu.vegetarian|escape }}</h3>#}
+		    	 {#  <h3>{{  menu.vegetarian|escape }}</h3>#}
 		    
-		</main>	
- {% endblock %}
+		 <ul>
+		    {% for menu in  menus %}
+		    	<li>
+		    		<article>
+		    			<figre>
+	                            <img src="{{  menu.picture|escape }}" width="150"/>
+	                    </figre>
+	                     <section>      
+				            <h4>{{  menu.name|escape }}</h4>
+				           
+				            <p>{{  menu.discription|escape }}</p>
+			             </section> 
+			         </article>
+		         </li>
+		     {% endfor %}
+		  </ul>  
+</main>	
+
+{% endblock %}
 	  

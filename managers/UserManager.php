@@ -50,7 +50,7 @@ class UserManager extends AbstractManager{
 
         if($result)
         {
-            $user = new User($result["email"], $result["password"]);
+            $user = new User($result["username"], $result["email"], $result["password"]);
             $user->setId($result["id"]);
 
             return $user;

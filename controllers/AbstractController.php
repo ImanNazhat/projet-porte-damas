@@ -11,7 +11,9 @@ abstract class AbstractController
         ]);
 
         $twig->addExtension(new \Twig\Extension\DebugExtension());
-
+        
+        $twig->addGlobal('csrf_token', $_SESSION["csrf-token"]);
+        
         $this->twig = $twig;
     }
     protected function render(string $template, array $data) : void

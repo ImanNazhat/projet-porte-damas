@@ -25,6 +25,14 @@ class AuthController extends AbstractController
                                 $heure = $_POST["heure"];
                                 $message = $_POST["message"];
                                 
+                                if (empty($name) || empty($email) || empty($telephone) || empty($nombrePersonnes) || empty($date) || empty($heure) || empty($message)) {
+                                    $_SESSION["error-message"] = "Tous les champs sont obligatoires. Veuillez les remplir.";
+                                    $this->render("main/reserver.html.twig", ['error' => $_SESSION["error-message"]]);
+                                    unset($_SESSION["error-message"]);
+                                    return;
+                                }
+
+
                                 $reservation = new Reservation($name, $email, $telephone, $nombrePersonnes, $date, $heure, $message);
                                 
                                 
@@ -33,7 +41,7 @@ class AuthController extends AbstractController
                                 
                                 $createdReservation = $reservationManager->createReservation($reservation);
                                 
-                                $this->redirect("index.php?route=Reserver");
+                                $this->render("main/reserver.html.twig" , []);
                             }
                     }
                     
@@ -46,37 +54,51 @@ class AuthController extends AbstractController
                     {
                         if(isset($_POST["email"]) && isset($_POST["password"]))
                         {
+                             $tokenManager = new CSRFTokenManager();
+                             
+                        if(isset($_POST["csrf-token"]) && $tokenManager->validateCSRFToken($_POST["csrf-token"]))
+                        {
+                            
                             $usermanager = new UserManager();
                             $user = $usermanager->findByEmail($_POST["email"]);
-                
+                            
+                            
                             if($user !== null)
                             {
-                                if(password_verify($_POST["password"], $user->getPassword()))
+                                if(($_POST["password"] === $user->getPassword()))
                                 {
                                     
                                     $_SESSION["user"] = $user->getId();
-                                    $this->redirect("index.php?route=admin-menu");
+                                    
+                                    unset($_SESSION["error-message"]);
+                                    
+                                    
+                                    
+                                    $this->render("base-admin.html.twig" , []);
                                     return;
                                 }
                                 else
                                 {
                                     // invalid credentials (password)
-                                    $this->redirect("index.php?route=Votre-avis");
-                                    return;
+                                  $_SESSION["error-message"] = "Mot de pass incorrect. Veuillez réessayer.";
+                                 $this->render("main/connexion.html.twig", ['error' => $_SESSION["error-message"]]);
+                                 return;
                                 }
                             }
                             else
                             {
                                 // invalid credentials (email)
-                                $this->redirect("index.php?route=Reserver");
+                                  $_SESSION["error-message"] = "Email incorrect. Veuillez réessayer.";
+                                $this->render("main/connexion.html.twig" , ['error' => $_SESSION["error-message"]]);
                                return;
                             }
                         }
                         else
                         {
                             // missing fields
-                            $this->redirect("index.php?route=Connexion");
+                            $this->render("main/connexion.html.twig" , []);
                             return;
                         }
                     }
                                 }
+                }

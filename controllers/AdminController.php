@@ -36,7 +36,17 @@ class AdminController extends AbstractController
                        $this->render("admin/admin-menu/admin-menu.html.twig", [
                            "menus" => $menus
                        ]);
-                       
-                      
-                    }   
+                    } 
+                    
+                    public function AdminEdit() : void
+                    {
+                        $user = new UserManager;
+                        
+                        $users = $user->findAll();
+                        
+                        
+                       $this->render("admin/edit-admin.html.twig", [
+                           "users" => $users
+                       ]);
+                    } 
                 }

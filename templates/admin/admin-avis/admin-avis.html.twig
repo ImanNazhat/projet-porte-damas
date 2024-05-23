@@ -30,16 +30,16 @@
         <tr>
            
                     <td>
-                        {{ avis.id }}
+                        {{ avis.id}}
                     </td>
                     <td>
-                        {{ avis.userName }}
+                        {{ avis.userName|escape }}
                     </td>
                     <td>
-                        {{ avis.email }}
+                        {{ avis.email|escape }}
                     </td>
                     <td>
-                        {{ avis.comment }}
+                        {{ avis.comment|escape }}
                     </td>
                     <td>
                         <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-url="index.php?route=admin-supprimer-avis&avis_id={{ avis.id }}"><span class="bi bi-trash3-fill"></span></a>

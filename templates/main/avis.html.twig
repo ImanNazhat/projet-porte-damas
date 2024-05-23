@@ -3,9 +3,11 @@
 {% block main %}
 
 <main id="avis" class=avis>
-  
+      
+       <h2>Vous avez nous visiter? votre avis nous intéresse</h2>
+       
     <form method="post" action="index.php?route=check-creer-avis">
-        <h2>Vous avez nous visiter? votre avis nous intéresse</h2>
+       
         
                 <label for="username">Votre Nom:</label><br>
                 <input type="text" id="username" name="username" required><br><br>
@@ -16,19 +18,23 @@
                 <label for="comment">Votre avis :</label><br>
                 <textarea id="comment" name="comment"required></textarea><br><br>
         
-                <input type="submit" value="publier">
+                <input type="submit" value="publier" class=bouton>
     </form>
      
     <section>
+        <ul>
 		    	{% for avis in aviss %}
-		    	
-		        <h3>{{  avis.userName }}</h3>
-		        
-		        <p>{{  avis.comment }}</p>
-		        
-		        {% endfor %}
-		       
-		    </section>
+		    	<li>
+        		    	<article>
+        		        <h3><u>{{  avis.userName|escape }}</u> :</h3>
+        		        
+        		        <p>{{  avis.comment|escape }}</p>
+        		        </article>
+        		       
+		        </li>
+		   {% endfor %}
+		</ul>
+	</section>
 </main>
 
  {% include "partials/footer.html.twig" %}

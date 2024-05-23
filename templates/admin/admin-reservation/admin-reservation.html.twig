@@ -42,16 +42,16 @@
                         {{ reservation.id }}
                     </td>
                     <td>
-                        {{ reservation.name }}
+                        {{ reservation.name|escape }}
                     </td>
                     <td>
-                        {{ reservation.email }}
+                        {{ reservation.email|escape }}
                     </td>
                     <td>
-                        {{ reservation.telephone }}
+                        {{ reservation.telephone|escape }}
                     </td>
                     <td>
-                        {{ reservation.number }}
+                        {{ reservation.number|escape }}
                     </td>
                     <td>
                         {{ reservation.date }}
@@ -60,7 +60,7 @@
                         {{ reservation.hour }}
                     </td>
                     <td>
-                        {{ reservation.message }}
+                        {{ reservation.message|escape }}
                     </td>
                 </tr>
                 {% endfor %}
