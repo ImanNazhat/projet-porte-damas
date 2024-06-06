@@ -3,11 +3,21 @@
 {% block main %}
 
 <main class=menu>
-
-		    	 {#<h3>{{  menu.vegetarian|escape }}</h3>#}
-		    	 {# <h3>{{  menu.vegetarian|escape }}</h3>#}
-		    	 {#  <h3>{{  menu.vegetarian|escape }}</h3>#}
-		    
+		    	 <h2>Notre plats</h2>
+		    <section>	 
+		    	<div class="categories" id="plats-de-viande">
+			       <h3>plats de viande</h3>
+			       <ul class="dishes" id="plats-de-viande-dishes"></ul>
+			    </div>
+			    <div class="categories" id="plats-végétarien">
+			       <h3>Plats végétarien</h3>
+			       <ul class="dishes" id="plats-végétarien-dishes"></ul>
+			    </div>
+			    <div class="categories" id="desserts">
+			       <h3>Desserts</h3>
+			       <ul class="dishes" id="desserts-dishes"></ul>
+			    </div>
+			</section>
 		 <ul>
 		    {% for menu in  menus %}
 		    	<li>

@@ -152,10 +152,25 @@ class Router {
                       echo "menu_id n'existes pas pour la route admin-supprimer-menu";
                     }
                 }
+//*******************************categories*********************************************************// 
+                else if($get["route"] === "categorie-meat") {
+                    
+                    $categorieController->CategorieViande();
+                }
+                else if($get["route"] === "categorie-vegetarian") {
+                    
+                    $categorieController->CategorieVegetarian();
+                }
+                else if($get["route"] === "categorie-dessert") {
+                    
+                    $categorieController->CategorieDessert();
+                }
             } 
             else {
                     $pageController->about();
                 }
+                
+            
         }
             
 }

@@ -43,3 +43,23 @@ window.addEventListener("DOMContentLoaded", function(){
     
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const categories = ['plats-de-viande', 'plats-végétarien', 'desserts'];
+
+    categories.forEach(category => {
+        fetch(`https://example.com/api/dishes?categories=${categories}`)
+            .then(response => response.json())
+            .then(data => {
+                const dishesList = document.getElementById(`${categories}-dishes`);
+                data.forEach(dish => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'dish';
+                    listItem.textContent = dish.name;
+                    dishesList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+});

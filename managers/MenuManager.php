@@ -39,22 +39,7 @@ class MenuManager extends AbstractManager
         }
         return null;
     }
-    public function findVegetarian() : array
-    {
-        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:2');
-        $query->execute(array('2' => "2"));
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        $categoriesId = [];
-        
-        foreach($result as $item)
-        {
-            $dish = new Menu($item["name"], $item["description"], $item["picture"],$item["categories_id"]);
-            $dish->setId($item["id"]);
-            $categoriesId[] = $item;
-        }
-        return $categoriesId;
-       
-    }
+    
     public function create(Menu $menu) : Menu 
     {
         $query = $this->db->prepare('INSERT INTO dishes (id, name, description,picture,categories_id) VALUES (NULL, :name,:description, :picture , :categories_id)');

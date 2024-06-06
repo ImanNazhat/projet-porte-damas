@@ -45,14 +45,16 @@ class MenuController extends AbstractController
                                     
                                     $this->redirect("index.php?route=admin-menu");
                                     // $this->render("admin/admin-menu/admin-menu.html.twig" , []);
+                                    
+                                   
                                 } 
                                 else {
                                     echo "Une erreur s'est produite lors du téléchargement du fichier.";
                                 }
-                                                        
-                                
+                               
                             }
                     }
+                    
                     
                     public function edit(int $menuId) : void
                     {
