@@ -19,26 +19,31 @@ class AvisController extends AbstractController
                         $this->render("main/avis.html.twig" , []);
                     }
                     
-                     public function checkCreateAvis() : void{
+                    public function checkCreateAvis() : void {
+                    // Vérification de la soumission du formulaire
+                    if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["comment"])) {
+                       
+                        $username = htmlspecialchars(trim($_POST["username"]));
+                        $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+                        $comment = htmlspecialchars(trim($_POST["comment"]));
                         
-                         if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["comment"]))
-                            {
-                                $username = $_POST["username"];
-                                $email = $_POST["email"];
-                                $comment = $_POST["comment"];
-                                
-                                $avis = new Avis($username, $email, $comment);
-                                
-                                
-                                
-                                $avisManager = new AvisManager();
-                                
-                                $createdAvis = $avisManager->createAvis($avis);
-                                
-                                $this->redirect("index.php?route=Votre-avis");
-                            }
+                        if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($username) && !empty($comment)) {
+                            
+                            $avis = new Avis($username, $email, $comment);
+                            
+                            
+                            $avisManager = new AvisManager();
+                            
+                           
+                            $createdAvis = $avisManager->createAvis($avis);
+                            
+                          
+                            $this->redirect("index.php?route=Votre-avis");
+                        } else {
+                            echo "Données invalides.";
+                        }
                     }
-                    
+                  }
                     
                     public function delete(int $avisId) : void{
                         

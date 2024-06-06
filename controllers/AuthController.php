@@ -32,10 +32,7 @@ class AuthController extends AbstractController
                                     return;
                                 }
 
-
                                 $reservation = new Reservation($name, $email, $telephone, $nombrePersonnes, $date, $heure, $message);
-                                
-                                
                                 
                                 $reservationManager = new ReservationManager();
                                 
@@ -71,8 +68,6 @@ class AuthController extends AbstractController
                                     $_SESSION["user"] = $user->getId();
                                     
                                     unset($_SESSION["error-message"]);
-                                    
-                                    
                                     
                                     $this->render("base-admin.html.twig" , []);
                                     return;

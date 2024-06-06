@@ -26,7 +26,22 @@ class Router {
                     $authController->Reservation();
                 }
                 
-                else if($get["route"] === "admin-reservation") {
+                else if($get["route"] === "Votre-avis") {
+                    
+                    $avisController->Avis();
+                } 
+                 else if($get["route"] === "Connexion") {
+                     
+                    $authController->connexion();  
+                }
+                 else if ($get["route"] === "check-connexion")
+                {
+                    $authController->checkConnexion();
+                }
+                
+//******************admin reservation************************************//
+
+                 else if($get["route"] === "admin-reservation") {
                     
                     $adminController->AdminReservation();
                 }
@@ -34,25 +49,46 @@ class Router {
                     
                     $authController->checkCreateReservation();
                 }
-                else if($get["route"] === "Votre-avis") {
-                    
-                    $avisController->Avis();
-                } 
-                 else if($get["route"] === "Connexion") {
-                     
-                    $authController->connexion();
-                    
-                } 
-                else if ($get["route"] === "check-connexion")
+//******************admin User************************************//
+
+                else if ($get["route"] === "user")
                 {
-                    $authController->checkConnexion();
+                    $adminController->User();
                 }
-                
-                else if ($get["route"] === "admin-edit")
+                else if ($get["route"] === "user-creer-user")
                 {
-                    $adminController->AdminEdit();
+                    $adminController->createUser();
                 }
-                
+                else if ($get["route"] === "user-check-creer-user")
+                {
+                    $adminController->checkCreateUser();
+                }
+                else if($get["route"] === "admin-modifier-user"){
+                    
+                    if (isset($get["user_id"])) {
+                        
+                    $userId = (int)$get["user_id"];
+                    $adminController->editUser($userId);
+                    }
+                }
+                else if($get["route"] === "admin-check-modifier-user"){
+                    
+                    $adminController->checkEditUser();
+                }
+                else if($get["route"] === "admin-supprimer-user"){
+                    
+                    if (isset($get["user_id"])) {
+                        
+                    $userId = (int)$get["user_id"];
+                    $adminController->delete($userId);
+                    }
+                    else
+                    {
+                      echo "user_id n'existes pas pour la route admin-supprimer-user";
+                    }
+                }
+//*******************************admin avis*********************************************************// 
+
                 else if ($get["route"] === "admin-avis") {
                       
                     $adminController->AdminAvis();
@@ -77,7 +113,8 @@ class Router {
                       echo "avis_id n'existes pas pour la route admin-supprimer-avis";
                     }
                 }
-                
+//*******************************admin menu*********************************************************//      
+
                 else if($get["route"] === "admin-menu") {
                     
                     $adminController->AdminMenu();

@@ -12,21 +12,7 @@ class MenuController extends AbstractController
                           "menus" => $menus
                           ]);
                     }
-                    public function MenuVegetarian() : void
-                    {
-                        //pour essayer que ma function marche bien
-                    //     $menuManager = new MenuManager();
-                    //   $vegetarians = $menuManager->findAll();
-                    //   dump($vegetarians);
-                       
-                    //   $menuManager = new MenuManager();
-                    //   $vegetarians = $menuManager->findOne(3); //ici il faut que j'ai ecrir le numero de l'item que je le veux
-                    //   dump($vegetarians);
-                       
-                    //   $menuManager = new MenuManager();
-                    //   $vegetarians = $menuManager->findVegetarian();
-                    //   dump($vegetarians);
-                    }
+                    
                     public function home() : void
                     {
                         $this->render("home.html.twig" , []);
@@ -58,8 +44,9 @@ class MenuController extends AbstractController
                                     $createdMenu = $menuManager->create($menu);
                                     
                                     $this->redirect("index.php?route=admin-menu");
-                            
-                                } else {
+                                    // $this->render("admin/admin-menu/admin-menu.html.twig" , []);
+                                } 
+                                else {
                                     echo "Une erreur s'est produite lors du téléchargement du fichier.";
                                 }
                                                         

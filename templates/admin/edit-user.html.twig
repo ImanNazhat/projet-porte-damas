@@ -1,0 +1,36 @@
+{% extends "base-admin.html.twig" %}
+
+{% block body %}
+<main class="container py-5">
+            <h1 class="mb-5">edite user</h1>
+            <form action="index.php?route=admin-check-modifier-user" method="post" class="mt-3" enctype="multipart/form-data">
+               
+                <input type="hidden" id="id" name="id" value="{{ user.id }}" />
+                <fieldset class="mb-4">
+                   <label for="username" class="form-label">
+                        Nom d'utilisateur
+                    </label>
+                    <input id="username" name="username" type="text" class="form-control" />
+                </fieldset>
+                <fieldset class="mb-4">
+                    <label for="email" class="form-label">
+                        Email
+                    </label>
+                    <input id="email" name="email" type="email" class="form-control" />
+                </fieldset>
+                <fieldset class="mb-4">
+                    <label for="password" class="form-label">
+                       Mot de passe
+                    </label>
+                    <input id="password" name="password" type="password" class="form-control"/>
+                </fieldset>
+                 <fieldset>  
+                    <label for="confirm-password">Confirmation de mot de passe:</label>
+                   <input type="password" id="confirm-password" name="confirm-password" class="form-control">
+               </fieldset>  
+                <fieldset>
+                    <input type="submit" name="submit" class="btn btn-primary" value ="Modifier" />
+                </fieldset>
+                </form>
+        </main>
+                {% endblock %}
