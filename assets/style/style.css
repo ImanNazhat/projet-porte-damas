@@ -37,6 +37,14 @@ main {
   align-items: center; 
 }
 
+.connexion , .reserver{
+   background-image:url(../img/homedamas.jpg);
+   background-repeat: no-repeat;
+   background-size: 160rem 75rem;
+   background-position: center;
+}
+
+
 @media (min-width: 768px) {
       menu {
         width: 750px; 
@@ -54,7 +62,9 @@ main {
         width: 1170px; 
         
       }
-    } 
+    }
+
+
  
 /*end global rules*/
 
@@ -248,10 +258,8 @@ article figre img {
 }
 /***************************************page d'reserver style************************************************/
 .reserver{
-   background-image:url(../img/istockphoto-1271870495-1024x1024.jpg);
    display:flex;
    flex-direction:column;
-   
 }
 
 .reserver form {
@@ -278,9 +286,8 @@ article figre img {
 /***************************************page connexion style************************************************/
 
 .connexion {
-  display:flex;
+   display:flex;
    flex-direction:column;
-   background-image:url(../img/istockphoto-1271870495-1024x1024.jpg);
    padding:200px;
 }
 
