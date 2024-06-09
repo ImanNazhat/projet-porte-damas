@@ -10,6 +10,7 @@ class Router {
                $menuController = new MenuController();
                $adminController = new AdminController();
                $avisController = new AvisController();
+               $categorieController = new CategorieController();
                  
                 if (isset($get["route"]))
                 {

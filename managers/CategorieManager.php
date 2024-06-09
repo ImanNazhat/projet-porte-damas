@@ -42,8 +42,8 @@ class CategorieManager extends AbstractManager
     
     public function findMeat() : array
     {
-        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:1');
-        $query->execute(array('1' => "1"));
+        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:categories_id');
+        $query->execute(array(':categories_id' => "1"));
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $meats = [];
         
@@ -59,8 +59,8 @@ class CategorieManager extends AbstractManager
     
     public function findVegetarian() : array
     {
-        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:2');
-        $query->execute(array('2' => "2"));
+        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:categories_id');
+        $query->execute(array(':categories_id' => "2"));
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $vegetarian = [];
         
@@ -76,8 +76,8 @@ class CategorieManager extends AbstractManager
     
     public function findDessert() : array
     {
-        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:3');
-        $query->execute(array('3' => "3"));
+        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:categories_id');
+        $query->execute(array(':categories_id' => "3"));
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $dessert = [];
         

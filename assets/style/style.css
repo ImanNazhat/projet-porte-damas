@@ -8,7 +8,7 @@ html {
 	font-size: 62.5%;  
 }
 
- body {
+body {
 	font-family: 'Nunito', sans-serif;
 	line-height: 1.5;
 	font-size: 1.8rem; 
@@ -25,11 +25,11 @@ h4{
 	font-family: 'Merienda', cursive;
 	font-weight: bold;
 	 font-size:3rem;
-  text-align:center;
+     text-align:center;
 } 
 
 main {
-  padding:20px;
+    padding:20px;
 	padding-left:15px;
 	padding-right:15px;
 	margin-left:auto;
@@ -38,24 +38,24 @@ main {
 }
 
 @media (min-width: 768px) {
-      .about {
+      menu {
         width: 750px; 
         
       }
     }
 @media (min-width:992px) {
-      .about {
+      menu {
         width:970px; 
         
       }
     }
 @media (min-width:1200px) {
-      .about {
+      menu {
         width: 1170px; 
         
       }
     } 
-    
+ 
 /*end global rules*/
 
 /***************************************header style************************************************/
@@ -217,8 +217,7 @@ article figre img {
 
 .avis form input , textarea{
   padding-left:13rem;
-  padding-right:13rem;
-  
+  padding-right:13rem; 
 }
 
 

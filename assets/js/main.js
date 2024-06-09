@@ -4,6 +4,9 @@ window.addEventListener("DOMContentLoaded", function(){
     // Je récupère la modale
     const deleteModal = document.getElementById('deleteModal');
     const editModal = document.getElementById('editModal');
+    const showViande = document.getElementById("show-plats-de-viande");
+    const showVegetarien = document.getElementById("show-plats-vegetarien");
+    const showDessert = document.getElementById("show-desserts");
     // Je vérifie si elle existe bien
     if(deleteModal)
     {
@@ -41,25 +44,7 @@ window.addEventListener("DOMContentLoaded", function(){
         });
     }
     
+    
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const categories = ['plats-de-viande', 'plats-végétarien', 'desserts'];
-
-    categories.forEach(category => {
-        fetch(`https://example.com/api/dishes?categories=${categories}`)
-            .then(response => response.json())
-            .then(data => {
-                const dishesList = document.getElementById(`${categories}-dishes`);
-                data.forEach(dish => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'dish';
-                    listItem.textContent = dish.name;
-                    dishesList.appendChild(listItem);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    });
-});
+//  

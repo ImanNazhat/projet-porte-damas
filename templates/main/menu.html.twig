@@ -4,20 +4,22 @@
 
 <main class=menu>
 		    	 <h2>Notre plats</h2>
-		    <section>	 
-		    	<div class="categories" id="plats-de-viande">
-			       <h3>plats de viande</h3>
-			       <ul class="dishes" id="plats-de-viande-dishes"></ul>
-			    </div>
-			    <div class="categories" id="plats-végétarien">
-			       <h3>Plats végétarien</h3>
-			       <ul class="dishes" id="plats-végétarien-dishes"></ul>
-			    </div>
-			    <div class="categories" id="desserts">
-			       <h3>Desserts</h3>
-			       <ul class="dishes" id="desserts-dishes"></ul>
-			    </div>
-			</section>
+			     <nav>
+			        <ul>
+			                <li>
+			                    <a href="index.php?route=categorie-meat">Plats de viande</a>
+			                </li>
+			                <li>
+			                    <a href="index.php?route=categorie-vegetarian">Plats végétariens</a>
+			                </li>
+			                <li>
+			                    <a href="index.php?route=categorie-dessert">Desserts</a>
+			                </li>
+			               
+			        </ul>
+			    </nav>
+    </section>
+    
 		 <ul>
 		    {% for menu in  menus %}
 		    	<li>
@@ -29,6 +31,58 @@
 				            <h4>{{  menu.name|escape }}</h4>
 				           
 				            <p>{{  menu.discription|escape }}</p>
+			             </section> 
+			         </article>
+		         </li>
+		     {% endfor %}
+		  </ul> 
+		  
+
+		 <ul>
+		    {% for meat in  meats %}
+		    	<li>
+		    		<article>
+		    			<figre>
+	                            <img src="{{  meat.picture|escape }}" width="150"/>
+	                    </figre>
+	                     <section>      
+				            <h4>{{  meat.name|escape }}</h4>
+				           
+				            <p>{{  meat.discription|escape }}</p>
+			             </section> 
+			         </article>
+		         </li>
+		     {% endfor %}
+		  </ul>  
+		  
+		   <ul>
+		    {% for vegetarian in  vegetarians %}
+		    	<li>
+		    		<article>
+		    			<figre>
+	                            <img src="{{  vegetarian.picture|escape }}" width="150"/>
+	                    </figre>
+	                     <section>      
+				            <h4>{{  vegetarian.name|escape }}</h4>
+				           
+				            <p>{{  vegetarian.discription|escape }}</p>
+			             </section> 
+			         </article>
+		         </li>
+		     {% endfor %}
+		  </ul>  
+		  
+		   <ul>
+		    {% for dessert in  desserts %}
+		    	<li>
+		    		<article>
+		    			<figre>
+	                            <img src="{{  dessert.picture|escape }}" width="150"/>
+	                    </figre>
+	                     <section>      
+				            <h4>{{  dessert.name|escape }}</h4>
+				           
+				            <p>{{  dessert.discription|escape }}</p>
 			             </section> 
 			         </article>
 		         </li>

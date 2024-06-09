@@ -12,7 +12,7 @@ class MenuController extends AbstractController
                           "menus" => $menus
                           ]);
                     }
-                    
+                                 
                     public function home() : void
                     {
                         $this->render("home.html.twig" , []);
@@ -43,8 +43,8 @@ class MenuController extends AbstractController
                                     
                                     $createdMenu = $menuManager->create($menu);
                                     
-                                    $this->redirect("index.php?route=admin-menu");
-                                    // $this->render("admin/admin-menu/admin-menu.html.twig" , []);
+                                    // $this->redirect("index.php?route=admin-menu");
+                                    $this->render("admin/admin-menu/admin-menu.html.twig" , []);
                                     
                                    
                                 } 
