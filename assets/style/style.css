@@ -183,6 +183,7 @@ article figre img {
 .menu ul article {
   display:grid;
   grid-template-columns: repeat(8, 1fr);
+  
 }
 .menu ul li article figre:nth-of-type(2n + 1){
    z-index:1;
