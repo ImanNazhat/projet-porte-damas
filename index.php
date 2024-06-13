@@ -2,6 +2,7 @@
 
 session_start();
 
+
 require "vendor/autoload.php";
 
 if(!isset($_SESSION["csrf-token"]))

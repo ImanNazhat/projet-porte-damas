@@ -7,5 +7,9 @@ class PageController extends AbstractController
                     {
                      $this->render("main/about.html.twig", []);
                     }
+                    public function legal() : void
+                    {
+                     $this->render("main/legal.html.twig", []);
+                    }
                     
                 }

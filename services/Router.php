@@ -39,6 +39,10 @@ class Router {
                 {
                     $authController->checkConnexion();
                 }
+                else if ($get["route"] === "legal")
+                {
+                    $pageController->legal();
+                }
                 
 //******************admin reservation************************************//
 

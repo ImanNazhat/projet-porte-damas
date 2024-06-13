@@ -64,7 +64,6 @@ main {
       }
     }
 
-
  
 /*end global rules*/
 
@@ -307,17 +306,35 @@ article figre img {
   padding-right:13rem;
   
 }
+
+.alert-message {
+            display: none;
+            color: #242743;
+            border: 1px solid #242743;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+.close-btn-error {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
 /***************************************footer style************************************************/
 footer {
-  	background:#E6D5B1;
-  	display:flex;
-    justify-content:space-around;
+    background:#E6D5B1;
     color: #242743;
-  	font-family: 'Nunito', cursive;
-    align-items:center;
+    font-family: 'Nunito', cursive;
     font-size:1.3rem;
 }
-footer aside {
+footer section{
+  	display:flex;
+    justify-content:space-around;
+    align-items:center;
+}
+footer aside  {
 	padding: 3rem;
 	text-align: center;
 }
@@ -325,5 +342,27 @@ footer aside {
 footer h3 {
 	font-size: 2rem;
 	padding-left: 1rem;
-
+}
+footer p{
+    text-align:center;
+}
+footer section aside p a {
+    color: #242743;
+}
+footer p a {
+    color: #242743;
+}
+/***************************************legal style************************************************/
+.legal{
+      color: #242743;
+}
+.legal section{
+    border: 1px solid black;
+    padding:10px;
+}
+.legal p {
+    font-size:15px;
+}
+.legal h2 {
+    text-align:left;
 }
