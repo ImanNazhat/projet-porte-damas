@@ -170,6 +170,10 @@ class Router {
                     
                     $categorieController->CategorieDessert();
                 }
+                else if($get["route"] === "logout")
+                {
+                    $authController->logout();
+                }
             } 
             else {
                     $pageController->about();

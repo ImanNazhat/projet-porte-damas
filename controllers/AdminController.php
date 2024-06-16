@@ -62,14 +62,12 @@ class AdminController extends AbstractController
                                     $userManager = new UserManager();
                                     $existingUser = $userManager->findByEmail($_POST["email"]);
                                     
-                                   
-                                    
                                     if($existingUser === null)
                                             {   
-                                                $username = $_POST["username"];
+                                                $username = htmlspecialchars($_POST['username']);
                                                 $email = $_POST["email"];
-                                                $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-                                                
+                                                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+                                            
                                                 $user = new User($username,$email, $password);
                                                 
                             

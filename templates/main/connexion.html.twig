@@ -1,17 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block main %}	
- {% if error is defined %}
-        <div class="error-message" >
-            {{ error }}
-        </div>
-    {% endif %}
-    
+
 
 <main class=connexion>
     
     
-    <form action="index.php?route=check-connexion" method="post">
+    <form action="index.php?route=check-connexion" id="login-form" method="post">
         <h1>Connexion</h1>
         <input type="hidden" name="csrf-token" value="{{ csrf_token}}">
         
@@ -22,6 +17,12 @@
         <input type="password" id="password" name="password" required><br><br>
 
         <input type="submit" value="Se connecter" class=bouton>
+        
+        <div class="alert-message" style="display: none;>
+            <span class="close-btn-error">&times;</span>
+            <span id="error-message"></span>
+        </div>
+        
     </form>
 </main>
 

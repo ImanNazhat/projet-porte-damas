@@ -39,41 +39,48 @@ abstract class AbstractController
         header("Location: $route");
     }
 
-    protected function renderJSON(array $data) : void
+    // protected function renderJson(array $data) : void
+    // {
+    //     header('Content-Type: application/json');
+    //     echo json_encode($data);
+    //     exit;
+    // }
+    protected function renderJson(string $template, array $data) : void
     {
-        echo json_encode($data);
+        $jsonData = json_encode($data);
+        echo $this->twig->render($template, ['json_data' => $jsonData]);
     }
     
-    protected function sendEmail(string $email,string $name) : void
-    {
-        $mail = new PHPMailer(true);
+    protected function sendEmail(string $email,string $name) : bool
+        {
+            $mail = new PHPMailer(true);
+            
+            try {          
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;   
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 587;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'portededamas5@gmail.com'; 
+            $mail->Password   = 'efffgtusgfyziijb';
+            
+                
+            $mail->CharSet    = "utf-8";
+            
+            $mail->addAddress($email, $name);
+            $mail->setFrom('portededamas5@gmail.com', 'portededamas');
+            
+            $mail->isHTML(true);
+            
+            $mail->Subject = 'Confirmation de réservation';
+            $mail->Body    = "Bonjour $name,<br><br>Votre réservation a été confirmée.<br><br>Merci de votre réservation.";
+            $mail->send();
         
-         try {          
-                         $mail->SMTPDebug = SMTP::DEBUG_SERVER;    
-                        $mail->isSMTP();
-                        $mail->Host       = 'db.3wa.io';
-                        $mail->Port       = 3306;
-                        $mail->SMTPAuth   = true;
-                        $mail->Username   = 'portededamas5@gmail.com'; 
-                        $mail->Password   = 'efffgtusgfyziijb';
-                        
-                          
-                        $mail->CharSet    = "utf-8";
-                        
-                        $mail->addAddress($email, $name);
-                        $mail->setFrom('portededamas5@gmail.com', 'portededamas');
-                        
-                        $mail->isHTML(true);
-                        
-                        $mail->Subject = 'Confirmation de réservation';
-                        $mail->Body    = "Bonjour $name,<br><br>Votre réservation a été confirmée.<br>><br>Merci de votre réservation.";
-                        $mail->send();
-                    
-                         echo 'Message has been sent';
-                        } catch (Exception) {
-                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                        }
-                                    }
+                return true;
+            } catch (Exception) {
+                return false;
+            }
+        }
     }
 
 
