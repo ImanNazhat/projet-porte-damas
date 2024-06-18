@@ -69,16 +69,16 @@ class MenuController extends AbstractController
                          
                     }
                     
-                    public function checkEdit() : void{
+                    public function checkEdit() : void {
                         
-                        if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
+                    if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
                             {
                                 $name = $_POST["name"];
                                 $description = $_POST["Description"];
                                 $select = $_POST["select"];
                                 $id = $_POST["id"];
                                 
-                                // Traitement du fichier téléchargé
+                                
                                 $image_tmp_name = $_FILES["image"]["tmp_name"];
                                 $image_name = basename($_FILES["image"]["name"]);
                                 $target_dir = "assets/img/"; 
@@ -106,8 +106,8 @@ class MenuController extends AbstractController
                                     echo "Une erreur s'est produite lors du téléchargement du fichier.";
                                 }
                             }
-                    }
-                    
+}
+            
                     public function delete(int $menuId) : void{
                         
                         $menuManager = new MenuManager();
