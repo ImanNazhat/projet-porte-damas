@@ -1,50 +1,48 @@
-// si le dom de la page est bien chargé
+// If the DOM content of the page is fully loaded
 window.addEventListener("DOMContentLoaded", function(){
 
-    // Je récupère la modale
+    // Get the modals
     const deleteModal = document.getElementById('deleteModal');
     const editModal = document.getElementById('editModal');
     const showViande = document.getElementById("show-plats-de-viande");
     const showVegetarien = document.getElementById("show-plats-vegetarien");
     const showDessert = document.getElementById("show-desserts");
-    // Je vérifie si elle existe bien
-    if(deleteModal)
-    {
-        // si la modale apparait
-        deleteModal.addEventListener("show.bs.modal", function(event){
+
+    // Check if the delete modal exists
+    if (deleteModal) {
+        // When the modal appears
+        deleteModal.addEventListener("show.bs.modal", function(event) {
             const deleteButton = event.relatedTarget;
 
-            // je récupère l'url de la route pour supprimer
+            // Get the URL of the route for deletion
             const url = deleteButton.getAttribute("data-url");
             const confirmDelete = document.getElementById("deleteConfirmButton");
 
-            // si le bouton de confirmation est cliqué
-            confirmDelete.addEventListener("click", function(event){
-                // j'envoie vers la route qui supprime
+            // If the confirm delete button is clicked
+            confirmDelete.addEventListener("click", function(event) {
+                // Redirect to the deletion route
                 window.location.href = url;
             });
         });
     }
     
-    if(editModal)
-    {
-        // si la modale apparait
-        editModal.addEventListener("show.bs.modal", function(event){
+    // Check if the edit modal exists
+    if (editModal) {
+        // When the modal appears
+        editModal.addEventListener("show.bs.modal", function(event) {
             const editButton = event.relatedTarget;
 
-            // je récupère l'url de la route pour supprimer
+            // Get the URL of the route for editing
             const url = editButton.getAttribute("data-url");
-            const confirmEdit= document.getElementById("editConfirmButton");
+            const confirmEdit = document.getElementById("editConfirmButton");
 
-            // si le bouton de confirmation est cliqué
-            confirmEdit.addEventListener("click", function(event){
-                // j'envoie vers la route qui supprime
+            // If the confirm edit button is clicked
+            confirmEdit.addEventListener("click", function(event) {
+                // Redirect to the editing route
                 window.location.href = url;
             });
         });
     }
-    
-    
 });
 
 function showLoginError() {

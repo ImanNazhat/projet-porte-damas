@@ -3,7 +3,7 @@
 {% block main %}
 
 <main class=menu>
-		    	 <h2>Notre plats</h2>
+		    	 <h2><a href="index.php?route=Nos-plats">Nos plats</a></h2>
 			     <nav>
 			        <ul>
 			                <li>
@@ -23,7 +23,7 @@
 		 <ul>
 		    {% for menu in  menus %}
 		    	<li>
-		    		<article>
+		    		<div>
 		    			<figre>
 	                            <img src="{{  menu.picture|escape }}" width="150"/>
 	                    </figre>
@@ -32,7 +32,7 @@
 				           
 				            <p>{{  menu.discription|escape }}</p>
 			             </section> 
-			         </article>
+			        </div>
 		         </li>
 		     {% endfor %}
 		  </ul> 
@@ -41,7 +41,7 @@
 		 <ul>
 		    {% for meat in  meats %}
 		    	<li>
-		    		<article>
+		    	  <div>
 		    			<figre>
 	                            <img src="{{  meat.picture|escape }}" width="150"/>
 	                    </figre>
@@ -50,7 +50,7 @@
 				           
 				            <p>{{  meat.discription|escape }}</p>
 			             </section> 
-			         </article>
+			        </div>
 		         </li>
 		     {% endfor %}
 		  </ul>  
@@ -58,7 +58,7 @@
 		   <ul>
 		    {% for vegetarian in  vegetarians %}
 		    	<li>
-		    		<article>
+		    		<div>
 		    			<figre>
 	                            <img src="{{  vegetarian.picture|escape }}" width="150"/>
 	                    </figre>
@@ -67,7 +67,7 @@
 				           
 				            <p>{{  vegetarian.discription|escape }}</p>
 			             </section> 
-			         </article>
+			         </div>
 		         </li>
 		     {% endfor %}
 		  </ul>  
@@ -75,7 +75,7 @@
 		   <ul>
 		    {% for dessert in  desserts %}
 		    	<li>
-		    		<article>
+		    		<div>
 		    			<figre>
 	                            <img src="{{  dessert.picture|escape }}" width="150"/>
 	                    </figre>
@@ -84,7 +84,7 @@
 				           
 				            <p>{{  dessert.discription|escape }}</p>
 			             </section> 
-			         </article>
+			         </div>
 		         </li>
 		     {% endfor %}
 		  </ul>  
