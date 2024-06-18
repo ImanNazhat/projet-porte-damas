@@ -86,7 +86,7 @@ class MenuController extends AbstractController
                                 
                                 if(move_uploaded_file($image_tmp_name, $target_file)) {
                                     
-                                $menu = new Menu($name, $description, $target_file,$select,$id);
+                                $menu = new Menu($name, $description, $target_file,$select);
                                 
                                 $menu->setId($id);
                                 
@@ -94,8 +94,14 @@ class MenuController extends AbstractController
                                 
                                 $editMenu = $menuManager->edit($menu);
                                 
-                                $this->redirect("index.php?route=admin-menu");
-                                } 
+                                $menu = new MenuManager;
+                        
+                                $menus = $menu->findAll();
+                                    
+                                 $this->render("main/menu.html.twig", [
+                                      "menus" => $menus
+                                      ]);
+                                            } 
                                 else {
                                     echo "Une erreur s'est produite lors du téléchargement du fichier.";
                                 }
@@ -107,8 +113,12 @@ class MenuController extends AbstractController
                         $menuManager = new MenuManager();
                         
                         $menuManager->delete($menuId);
+                        
+                        $menu = new MenuManager;
+                        
+                        $menus = $menu->findAll();
                     
-                        $this->redirect("index.php?route=admin-menu");
+                        $this->render("admin/admin-menu/admin-menu.html.twig" , ["menus" => $menus]);
                     }
                     
                 }

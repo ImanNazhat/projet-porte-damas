@@ -145,8 +145,16 @@ class AdminController extends AbstractController
             // Update the user information
             $editUser = $userManager->editUser($user);
             
-            // Render the users template
-            $this->render("admin/user.html.twig",[]);
+             // Create a new instance of UserManager
+            $user = new UserManager;
+            
+            // Retrieve all users
+            $users = $user->findAll();
+            
+            // Render the admin users template with the retrieved users
+            $this->render("admin/user.html.twig", [
+                "users" => $users
+            ]);
         } else {
             // Handle error
             echo "An error occurred during the file upload.";

@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<main id="avis" class=avis>
+<main class=avis>
       
        <h2>Vous avez nous visiter? votre avis nous intéresse</h2>
        
@@ -21,7 +21,7 @@
                 <input type="submit" value="publier" class=bouton>
     </form>
      
-    <section>
+    <div>
         <ul>
 		    	{% for avis in aviss %}
 		    	<li>
@@ -34,7 +34,7 @@
 		        </li>
 		   {% endfor %}
 		</ul>
-	</section>
+	</div>
 </main>
 
  {% include "partials/footer.html.twig" %}

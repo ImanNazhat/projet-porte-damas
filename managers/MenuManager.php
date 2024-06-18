@@ -92,8 +92,6 @@ class MenuManager extends AbstractManager
          
         $query->execute($parameters);
        
-       
-        
         return $menu;
     }
     

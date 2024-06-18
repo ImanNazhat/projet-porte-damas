@@ -1,360 +1,441 @@
-/* start global rules */
+/* Start global rules */
 
 body * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-	font-size: 62.5%;  
+  font-size: 62.5%;
 }
 
 body {
-	font-family: 'Nunito', sans-serif;
-	line-height: 1.5;
-	font-size: 1.8rem; 
-	background-color:#F4EAD5;
-	margin: 0;
-	padding: 0;
-	border: 0;
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.5;
+  font-size: 1.8rem;
+  background-color: #F4EAD5;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 h1, 
 h2, 
-h3 ,
-h4{
-	font-family: 'Merienda', cursive;
-	font-weight: bold;
-     text-align:center;
-} 
+h3, 
+h4 {
+  font-family: 'Merienda', cursive;
+  font-weight: bold;
+  text-align: center;
+}
 
 main {
-    padding:10px 15px;
-   align-items: center; 
+  padding: 10px 15px;
+  align-items: center;
 }
 
-.connexion , .reserver{
-   background-image:url(../img/homedamas.jpg);
-   background-repeat: no-repeat;
-   background-size: 160rem 75rem;
-   background-position:center;
+.connexion, .reserver {
+  background-image: url(../img/homedamas.jpg);
+  background-repeat: no-repeat;
+  background-size: 160rem 75rem;
+  background-position: center;
 }
 
 
-@media (max-width: 768px) {
-      main {
-   
-    margin:auto;
-  }
-      header,nav ul {
-    display: flex;
-    flex-direction:column;
-}
-}
+/* End global rules */
 
-/*end global rules*/
-
-/***************************************header style************************************************/
+/*************************************** Header style ************************************************/
 
 header {
-  	background:#E6D5B1;
-  	display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size: 2rem; 
+  background: #E6D5B1;
+  display: flex;
+  flex-direction: column;
+  text-align:center;
+  font-size: 2rem;
 }
 
-/***************************************Logo style************************************************/
+/*************************************** Logo style ************************************************/
 
 .logo {
-	width: 20%;
-	margin:0;
+  width: 75%;
+  margin: 0;
 }
 
-/***************************************nav style************************************************/
+/*************************************** Nav style ************************************************/
 
-nav ul {
-    display: flex;
-    justify-content:space-around;
-  	text-align: center;
-  	margin:0;
-  	padding:0;
-  	list-style: none;
-  	color: #242743;
-  	font-family: 'Merienda', cursive;
+nav ul,.menu nav ul {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+  color: #242743;
+  font-family: 'Merienda', cursive;
 }
+
 nav a {
-	font-weight: bold;
-	text-decoration: none;
-	padding: 1rem 2rem;
-	color: #242743;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  color: #242743;
 }
 
-/***************************************page d'accueil style************************************************/
-.about{
-    align-items: center;
-    padding-bottom:5rem;
+/*************************************** Page d'accueil style ************************************************/
+
+.about {
+  align-items: center;
+  padding-bottom: 5rem;
 }
 
 .title {
-  text-align: center; 
+  text-align: center;
   font-size: 4rem;
   color: #242743;
-  padding:1rem;
+  padding: 1rem;
 }
 
 .about div {
-  	display:grid;
-  	grid-template-columns: repeat(5, 1fr);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .about div figre {
-   z-index:1;
-   grid-column: 2 / 4;
-   grid-row: 2;
+  z-index: 1;
+  grid-column:2/5;
+  grid-row: 1/3;
 }
 
 .about div figre img {
-    width:40rem;
+  width: 100%;
+  max-width: 40rem;
 }
 
 .container {
-  text-align:center;
-  padding:5rem;
-  background-color:#E6D5B1;
-  grid-column: 3 / 5;
-  grid-row: 1 / 4;
+  text-align: center;
+  padding: 5rem;
+  background-color: #E6D5B1;
   color: #242743;
+  grid-column: 1 / 6;
+  grid-row: 2 / 5;
 }
 
-
-.container p{
-    font-size:1.8rem;
-    padding:0 10rem;
+.container p {
+  font-size: 1.8rem;
+  padding:4rem;
 }
 
-.error-message{
-  padding:10px;
-  background-color:#242743;
-  font-size:20px;
-  width:600px;
-  text-align:center;
-  position:fixed;
-  top:80px;
-  right:0;
-  z-index:9999;
-  color: #E6D5B1
+/*************************************** Error message style ************************************************/
+
+.error-message {
+  padding: 10px;
+  background-color: #242743;
+  font-size: 20px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  z-index: 9999;
+  color: #E6D5B1;
 }
 
-
-/***************************************page de menu style************************************************/
+/*************************************** Page de menu style ************************************************/
 
 .menu {
   color: #242743;
-  font-size:20px;
+  font-size: 20px;
 }
-
-.menu h2 a{
-    text-decoration:none;
-    font-size:3rem;
-    padding:5rem;
-    color: #242743;
+.menu h2{
+  padding:20px;
 }
-
-.menu nav ul {
-   display:flex;
-  flex-direction:row;
-}
-.menu ul{
-    list-style:none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-.menu ul li div {
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  padding:10px;
-}
-.menu ul li div figre{
-   z-index:1;
-  grid-column: 1 / 3;
-  grid-row: 2;
-}
-
-.menu ul li div figre img{
-    width:20rem;
-    padding:10px;
-}
-.menu ul li div section  {
-  background-color:#E6D5B1;
-  grid-column: 2 / 6;
-  grid-row: 1/4;
+.menu h2 a {
+  text-decoration:none;
+  font-size:3rem;
+  padding:5rem;
   color: #242743;
-  padding:60px;
-}
-.menu ul li div section p{
-   font-size:20px;
-   text-align:center;
-}
-.menu ul li div section h4{
-    font-size:25px;
 }
 
-/***************************************page d'avis style************************************************/
+.menu ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.menu ul li div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px;
+}
+
+.menu ul li div  figre {
+  z-index: 1;
+  grid-column:2;
+  grid-row: 1/3;
+  
+}
+
+.menu ul li div figre img {
+  width:400px;
+  max-width: 20rem;
+  padding: 10px;
+}
+
+.menu ul li div section {
+  background-color: #E6D5B1;
+  grid-column: 1 / 4;
+  grid-row: 2 / 5;
+  color: #242743;
+  padding-top:150px;
+}
+
+.menu ul li div section p {
+  font-size: 20px;
+  text-align: center;
+}
+
+.menu ul li div  section h4 {
+  font-size: 25px;
+}
+
+/*************************************** Page d'avis style ************************************************/
 
 .avis {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
 .avis h2 {
-  font-size:2.5rem;
-  padding-bottom:10px;
+  font-size: 2.5rem;
+  padding-bottom: 10px;
 }
 
 .avis form {
-  background-color:#E6D5B1;
-  font-size:1.5rem;
-  padding:1rem;
-  
+  background-color: #E6D5B1;
+  font-size: 1.5rem;
+  padding:4rem;
 }
 
-.avis form input , textarea{
-  padding-left:13rem;
-  padding-right:13rem; 
+.avis form input, textarea {
+  padding:0 2rem;
 }
 
-
-.avis section ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    list-style: none;
+.avis div ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style: none;
 }
 
-.avis section ul li {
-   padding:5px;
-   border:5px solid #FFFFFF;
-   background-color:#E6D5B1;
-   
+.avis div ul li {
+  padding:5px 10px;
+  border: 5px solid #FFFFFF;
+  background-color: #E6D5B1;
 }
 
-.avis section ul li article {
-   display:flex;
-   flex-direction:column;
-   justify-content:flex-start;
-   font-size: 2rem;
-   color: #242743;
-   width:500px;
+.avis div ul li article {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  color: #242743;
+  width: 100%;
 }
-.avis section ul li article h3{
-    text-align:left;
+
+.avis div ul li article h3 {
+  text-align: left;
 }
-/***************************************page d'reserver style************************************************/
-.reserver{
-   display:flex;
-   flex-direction:column;
+
+/*************************************** Page de réserver style ************************************************/
+
+.reserver {
+  display: flex;
+  flex-direction: column;
 }
 
 .reserver form {
-   padding:1rem;
-   background-color:rgba(230, 213, 177, 0.73);
-   font-size:14px;
+  padding: 1rem;
+  background-color: rgba(230, 213, 177, 0.73);
+  font-size: 1.4rem;
 }
 
 .reserver form h1 {
-  text-align:center;
+  text-align: center;
 }
 
-.reserver form input , textarea{
-  padding-left:13rem;
-  padding-right:13rem;
-  
+.reserver form input, textarea {
+  padding: 1rem;
 }
 
-.bouton{
-  padding-left:13rem;
-  padding-right:15rem;
-  background:#E6D5B1;
+.bouton {
+  padding: 1rem;
+  background: #E6D5B1;
 }
-/***************************************page connexion style************************************************/
+
+/*************************************** Page connexion style ************************************************/
 
 .connexion {
-   display:flex;
-   flex-direction:column;
-   padding:200px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
 }
 
 .connexion form {
-   padding:1rem;
-   background-color:rgba(230, 213, 177, 0.73);
-   font-size:14px;
+  padding: 1rem;
+  background-color: rgba(230, 213, 177, 0.73);
+  font-size: 1.4rem;
 }
 
 .connexion form h1 {
-  text-align:center;
+  text-align: center;
 }
 
 .connexion form input {
-  padding-left:13rem;
-  padding-right:13rem;
-  
+  padding: 1rem;
 }
 
 .alert-message {
-            display: none;
-            color: #242743;
-            border: 1px solid #242743;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            position: relative;
-        }
+  display: none;
+  color: #242743;
+  border: 1px solid #242743;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
 .close-btn-error {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            cursor: pointer;
-        }
-/***************************************footer style************************************************/
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/*************************************** Footer style ************************************************/
+
 footer {
-    background:#E6D5B1;
-    color: #242743;
-    font-family: 'Nunito', cursive;
-    font-size:1.3rem;
+  background: #E6D5B1;
+  color: #242743;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.3rem;
 }
-footer section{
-  	display:flex;
-    justify-content:space-around;
-    align-items:center;
+
+footer section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-footer aside  {
-	padding: 3rem;
-	text-align: center;
+
+footer aside {
+  padding: 3rem;
+  text-align: center;
 }
 
 footer h3 {
-	font-size: 2rem;
-	padding-left: 1rem;
+  font-size: 2rem;
+  padding-left: 1rem;
 }
-footer p{
-    text-align:center;
+
+footer p {
+  text-align: center;
 }
-footer section aside p a {
-    color: #242743;
-}
+
+footer section aside p a,
 footer p a {
-    color: #242743;
+  color: #242743;
 }
-/***************************************legal style************************************************/
-.legal{
-      color: #242743;
+
+/*************************************** Legal style ************************************************/
+
+.legal {
+  color: #242743;
 }
-.legal section{
-    border: 1px solid black;
-    padding:10px;
+
+.legal section {
+  border: 1px solid black;
+  padding: 10px;
 }
+
 .legal p {
-    font-size:15px;
+  font-size: 1.5rem;
 }
+
 .legal h2 {
-    text-align:left;
+  text-align: left;
+}
+
+/* Media queries for larger screens */
+@media (min-width: 768px) {
+  main {
+      margin: auto;
+  }
+  header div{
+      display: flex;
+      justify-content:space-around;
+  }
+  
+  .logo {
+  width: 20%;
+  margin: 0;
+}
+  nav ul,footer section ,.menu nav ul{
+      flex-direction: row;
+      justify-content:space-around;
+  }
+  
+  .container p {
+          padding:0 10rem;
+        }
+        
+  .menu ul {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .menu ul li div section {
+  padding-left:50px;
+  padding-top:60px;
+}
+
+  .avis div ul {
+      grid-template-columns: repeat(4, 1fr);
+  }
+
+  .avis div ul li article {
+      width: auto;
+  }
+}
+
+@media (min-width: 992px) {
+    
+  .about div figre {
+      grid-column: 2 / 4;
+      grid-row: 2;
+  }
+
+  .container {
+      grid-column: 3 / 5;
+      grid-row: 1 / 4;
+  }
+  .menu ul li div {
+      grid-template-columns: repeat(5, 1fr);
+  }
+
+  .menu ul li div figre {
+      grid-column: 1 / 3;
+      grid-row: 2;
+  }
+
+  .menu ul li div section {
+      grid-column: 2 / 6;
+      grid-row: 1 / 4;
+  }
+
+  .reserver form input,
+  .reserver form textarea,
+  .connexion form input {
+      padding-left: 13rem;
+      padding-right: 13rem;
+  }
+
+  .bouton {
+      padding-left: 13rem;
+      padding-right: 15rem;
+  }
 }
