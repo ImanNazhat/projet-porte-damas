@@ -98,7 +98,7 @@ class MenuController extends AbstractController
                         
                                 $menus = $menu->findAll();
                                     
-                                 $this->render("main/menu.html.twig", [
+                                 $this->render("admin/admin-menu/admin-menu.html.twig", [
                                       "menus" => $menus
                                       ]);
                                             } 

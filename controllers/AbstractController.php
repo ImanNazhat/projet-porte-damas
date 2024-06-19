@@ -45,11 +45,16 @@ abstract class AbstractController
     }
 
     // Method to render JSON data using Twig
-    protected function renderJson(string $template, array $data) : void
-    {
-        $jsonData = json_encode($data);// Encode the data array to JSON
+    // protected function renderJson(string $template, array $data) : void
+    // {
+    //     $jsonData = json_encode($data);// Encode the data array to JSON
 
-        echo $this->twig->render($template, ['json_data' => $jsonData]);  // Render the template with the JSON data
+    //     echo $this->twig->render($template, ['json_data' => $jsonData]);  // Render the template with the JSON data
+    // }
+    
+    protected function renderJson(array $data) : void
+    {
+        echo json_encode($data);
     }
     
     // Method to send an email

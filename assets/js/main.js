@@ -45,50 +45,50 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 });
 
-function showLoginError() {
-    const loginForm = document.getElementById("login-form");
-    const alertMessage = document.querySelector(".alert-message");
-    const errorMessageElement = document.getElementById("error-message");
+// function showLoginError() {
+//     const loginForm = document.getElementById("login-form");
+//     const alertMessage = document.querySelector(".alert-message");
+//     const errorMessageElement = document.getElementById("error-message");
 
-    loginForm.addEventListener("submit", handleFormSubmit);
+//     loginForm.addEventListener("submit", handleFormSubmit);
 
-    async function handleFormSubmit(event) {
-        event.preventDefault();
+//     async function handleFormSubmit(event) {
+//         event.preventDefault();
 
-        const formData = new FormData(loginForm);
+//         const formData = new FormData(loginForm);
 
-        try {
-            const response = await fetch("index.php?route=checkConnexion", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "Accept": "application/json", // Indique que le client attend une réponse JSON
-                    // Vous pouvez ajouter d'autres en-têtes si nécessaire
-                }
-            });
+//         try {
+//             const response = await fetch("index.php?route=checkConnexion", {
+//                 method: "POST",
+//                 body: formData,
+//                 headers: {
+//                     "Accept": "application/json", // Indique que le client attend une réponse JSON
+//                     // Vous pouvez ajouter d'autres en-têtes si nécessaire
+//                 }
+//             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
 
-            const data = await response.json();
-            console.log('Response Data:', data);
+//             const data = await response.json();
+//             console.log('Response Data:', data);
 
-            if (data.success) {
-                window.location.href = data.redirect;
-            } else {
-                showErrorMessage(data.error);
-            }
-        } catch (error) {
-            console.error("Fetch Error:", error);
-            showErrorMessage("Une erreur s'est produite lors de la vérification de la connexion.");
-        }
-    }
+//             if (data.success) {
+//                 window.location.href = data.redirect;
+//             } else {
+//                 showErrorMessage(data.error);
+//             }
+//         } catch (error) {
+//             console.error("Fetch Error:", error);
+//             showErrorMessage("Une erreur s'est produite lors de la vérification de la connexion.");
+//         }
+//     }
 
-    function showErrorMessage(message) {
-        errorMessageElement.textContent = message;
-        alertMessage.style.display = "block";
-    }
-}
+//     function showErrorMessage(message) {
+//         errorMessageElement.textContent = message;
+//         alertMessage.style.display = "block";
+//     }
+// }
 
-window.addEventListener("DOMContentLoaded", showLoginError);
+// window.addEventListener("DOMContentLoaded", showLoginError);
