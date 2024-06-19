@@ -21,40 +21,82 @@ class MenuController extends AbstractController
                         $this->render("admin/admin-menu/create-menu.html.twig" , []);
                     }
                     
-                    public function checkCreate() : void{
+                    // public function checkCreate() : void{
                         
-                        if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
-                            {
-                                $name = $_POST["name"];
-                                $description = $_POST["Description"];
-                                $select = $_POST["select"];
+                    //     if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
+                    //         {
+                    //             $name = $_POST["name"];
+                    //             $description = $_POST["Description"];
+                    //             $select = $_POST["select"];
                                 
-                                // Traitement du fichier téléchargé
-                                $image_tmp_name = $_FILES["image"]["tmp_name"];
-                                $image_name = basename($_FILES["image"]["name"]);
-                                $target_dir = "assets/img/"; 
-                                $target_file = $target_dir . $image_name;
+                    //             // Traitement du fichier téléchargé
+                    //             $image_tmp_name = $_FILES["image"]["tmp_name"];
+                    //             $image_name = basename($_FILES["image"]["name"]);
+                    //             $target_dir = "assets/img/"; 
+                    //             $target_file = $target_dir . $image_name;
                         
-                                if(move_uploaded_file($image_tmp_name, $target_file)) {
-                                    // Le fichier a été téléchargé avec succès, vous pouvez maintenant créer l'objet Menu
-                                    $menu = new Menu($name, $description, $target_file ,$select);
+                    //             if(move_uploaded_file($image_tmp_name, $target_file)) {
+                    //                 // Le fichier a été téléchargé avec succès, vous pouvez maintenant créer l'objet Menu
+                    //                 $menu = new Menu($name, $description, $target_file ,$select);
                                 
-                                    $menuManager = new MenuManager();
+                    //                 $menuManager = new MenuManager();
                                     
-                                    $createdMenu = $menuManager->create($menu);
+                    //                 $createdMenu = $menuManager->create($menu);
                                     
-                                    // $this->redirect("index.php?route=admin-menu");
-                                    $this->render("admin/admin-menu/admin-menu.html.twig" , []);
+                    //                 // $this->redirect("index.php?route=admin-menu");
+                    //                 $this->render("admin/admin-menu/admin-menu.html.twig" , []);
                                     
                                    
-                                } 
-                                else {
-                                    echo "Une erreur s'est produite lors du téléchargement du fichier.";
-                                }
+                    //             } 
+                    //             else {
+                    //                 echo "Une erreur s'est produite lors du téléchargement du fichier.";
+                    //             }
                                
-                            }
-                    }
+                    //         }
+                    // }
                     
+                    public function checkCreate() : void {
+                        if (isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"])) {
+                            $name = $_POST["name"];
+                            $description = $_POST["Description"];
+                            $select = $_POST["select"];
+                            
+                            // Traitement du fichier téléchargé
+                            $image_tmp_name = $_FILES["image"]["tmp_name"];
+                            $image_name = basename($_FILES["image"]["name"]);
+                            $target_dir = "assets/img/"; 
+                    
+                            // Vérification du type de fichier
+                            $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
+                            $file_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+                            if (!in_array($file_extension, $allowed_types)) {
+                                echo "Type de fichier non autorisé.";
+                                return;
+                            }
+                    
+                            // Vérification de la taille du fichier (limité à 10MB par exemple)
+                            if ($_FILES["image"]["size"] > 10000000) {
+                                echo "La taille du fichier est trop grande.";
+                                return;
+                            }
+                    
+                            // Renommage du fichier pour éviter les conflits
+                            $new_image_name = uniqid('img_', true) . '.' . $file_extension;
+                            $target_file = $target_dir . $new_image_name;
+                    
+                            if (move_uploaded_file($image_tmp_name, $target_file)) {
+                                // Le fichier a été téléchargé avec succès, vous pouvez maintenant créer l'objet Menu
+                                $menu = new Menu($name, $description, $target_file ,$select);
+                                $menuManager = new MenuManager();
+                                $createdMenu = $menuManager->create($menu);
+                                
+                                // $this->redirect("index.php?route=admin-menu");
+                                $this->render("admin/admin-menu/admin-menu.html.twig" , []);
+                            } else {
+                                echo "Une erreur s'est produite lors du téléchargement du fichier.";
+                            }
+                        }
+                    }
                     
                     public function edit(int $menuId) : void
                     {
