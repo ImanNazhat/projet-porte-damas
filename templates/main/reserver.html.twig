@@ -5,7 +5,7 @@
 {% block main %}
 
  {% if error is defined %}
-        <div class="error-message" >
+        <div class="error-message-o" >
             {{ error }}
         </div>
     {% endif %}
@@ -34,7 +34,7 @@
         <label for="heure">Heure de réservation :</label><br>
         <input type="time" id="heure" name="heure" required><br><br>
 
-        <label for="message">Message:</label><br>
+        <label for="message">Message: (Facultatif)</label><br>
         <textarea id="message" name="message"></textarea><br><br>
 
         <input type="submit" value="Réserver" class=bouton>

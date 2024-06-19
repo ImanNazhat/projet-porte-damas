@@ -50,7 +50,7 @@ class CategorieManager extends AbstractManager
         foreach($result as $item)
         {
             $dish = new Menu($item["name"], $item["description"], $item["picture"],$item["categories_id"]);
-            $dish->setId($item["id"]);
+            $dish->setId($item["id"]);  
             $meats[] = $item;
         }
         return $meats;

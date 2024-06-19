@@ -39,21 +39,21 @@ class MenuManager extends AbstractManager
         }
         return null;
     }
-    public function findByCategory(int $categorieId) : array
-    {
-        $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id = :categories_id');
-        $query->execute(['categories_id' => $categorieId]);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        $dishes = [];
+    // public function findByCategory(int $categorieId) : array
+    // {
+    //     $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id = :categories_id');
+    //     $query->execute(['categories_id' => $categorieId]);
+    //     $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    //     $dishes = [];
 
-        foreach($result as $item)
-        {
-            $dish = new Menu($item["name"], $item["description"], $item["picture"], $item["categories_id"]);
-            $dish->setId($item["id"]);
-            $dishes[] = $dish;
-        }
-        return $dishes;
-    }
+    //     foreach($result as $item)
+    //     {
+    //         $dish = new Menu($item["name"], $item["description"], $item["picture"], $item["categories_id"]);
+    //         $dish->setId($item["id"]);
+    //         $dishes[] = $dish;
+    //     }
+    //     return $dishes;
+    // }
     
     public function create(Menu $menu) : Menu 
     {

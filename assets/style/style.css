@@ -39,6 +39,14 @@ main {
   background-position: center;
 }
 
+.avis form input,
+  .avis form textarea,
+  .reserver form input,
+  .reserver form textarea,
+  .connexion form input {
+      width:30rem;
+      
+  }
 
 /* End global rules */
 
@@ -125,7 +133,7 @@ nav a {
 
 /*************************************** Error message style ************************************************/
 
-.error-message {
+.error-message-o {
   padding: 10px;
   background-color: #242743;
   font-size: 20px;
@@ -215,9 +223,7 @@ nav a {
   padding:4rem;
 }
 
-.avis form input, textarea {
-  padding:0 2rem;
-}
+
 
 .avis div ul {
   display: grid;
@@ -260,9 +266,6 @@ nav a {
   text-align: center;
 }
 
-.reserver form input, textarea {
-  padding: 1rem;
-}
 
 .bouton {
   padding: 1rem;
@@ -287,9 +290,6 @@ nav a {
   text-align: center;
 }
 
-.connexion form input {
-  padding: 1rem;
-}
 
 .alert-message {
   display: none;
@@ -427,11 +427,13 @@ footer p a {
       grid-row: 1 / 4;
   }
 
+  .avis form input,
+  .avis form textarea,
   .reserver form input,
   .reserver form textarea,
   .connexion form input {
-      padding-left: 13rem;
-      padding-right: 13rem;
+      width: 40rem;
+      
   }
 
   .bouton {
