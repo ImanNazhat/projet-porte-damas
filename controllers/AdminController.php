@@ -126,17 +126,22 @@ class AdminController extends AbstractController
     
     // Method to handle user editing
     public function checkEditUser() : void {
-        // Check if the form is submitted and all required fields are set
-        if(isset($_POST['submit']) && isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm-password"])) {
-            // Sanitize user input
-            $username = $_POST["username"];
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $confirmPassword = $_POST["confirm-password"];
-            $id = $_POST["id"];
+    // Check if the form is submitted and all required fields are set
+    if(isset($_POST['submit']) && isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm-password"])) {
+        // Sanitize user input
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $confirmPassword = $_POST["confirm-password"];
+        $id = $_POST["id"];
+        
+        // Check if passwords match
+        if ($password === $confirmPassword) {
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             
-            // Create a new User instance
-            $user = new User($username, $email, $password, $confirmPassword);
+            // Create a new User instance with the hashed password
+            $user = new User($username, $email, $hashedPassword, $confirmPassword);
             $user->setId($id);
             
             // Create a new instance of UserManager
@@ -145,21 +150,22 @@ class AdminController extends AbstractController
             // Update the user information
             $editUser = $userManager->editUser($user);
             
-             // Create a new instance of UserManager
-            $user = new UserManager;
-            
             // Retrieve all users
-            $users = $user->findAll();
+            $users = $userManager->findAll();
             
             // Render the admin users template with the retrieved users
             $this->render("admin/user.html.twig", [
                 "users" => $users
             ]);
         } else {
-            // Handle error
-            echo "An error occurred during the file upload.";
+            // Handle error if passwords do not match
+            echo "Les mots de passe ne correspondent pas.";
         }
+    } else {
+        // Handle error if form fields are not set
+        echo "Une erreur s'est produite lors de la soumission du formulaire.";
     }
+}
     
     // Method to delete a user
     public function delete(int $userId) : void {
