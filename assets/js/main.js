@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
     // Check if the delete modal exists
     if (deleteModal) {
-        // When the modal appears
+       
         deleteModal.addEventListener("show.bs.modal", function(event) {
             const deleteButton = event.relatedTarget;
 
@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
             // If the confirm delete button is clicked
             confirmDelete.addEventListener("click", function(event) {
-                // Redirect to the deletion route
+                
                 window.location.href = url;
             });
         });
@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function(){
     
     // Check if the edit modal exists
     if (editModal) {
-        // When the modal appears
+        
         editModal.addEventListener("show.bs.modal", function(event) {
             const editButton = event.relatedTarget;
 
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
             // If the confirm edit button is clicked
             confirmEdit.addEventListener("click", function(event) {
-                // Redirect to the editing route
+               
                 window.location.href = url;
             });
         });
@@ -50,33 +50,46 @@ function showLoginError() {
     const alertMessage = document.querySelector(".alert-message");
     const errorMessageElement = document.getElementById("error-message");
    
-
+    // Add an event listener to the form submission
     loginForm.addEventListener("submit", function(event) {
+        
+         // Prevent the default form submission behavior // Empêche le comportement par défaut de soumission du formulaire
         event.preventDefault();
         
+        // Create a FormData object with the form data
         const formData = new FormData(loginForm);
+        
+        // Options for the fetch request
         const options = {
             method: "POST",
             body: formData,
         };
 
+         // Send a POST request to check the login
         fetch("index.php?route=check-connexion", options)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Réponse du serveur non valide');
                 }
+                
+                 // Convert the response to JSON
                 return response.json();
             })
+            
             .then(data => {
                 if (data && data.success) {
                     
                     if (data.user !== null ) {
                             window.location.href = "index.php?route=user"; 
-                        } else {
+                        }
+                        
+                    else {
                             
                             console.error("user non géré:", data.user);
                         }
-                }    
+                }   
+                
+                // Display the error message and show the alert
                 else{
                             errorMessageElement.textContent = data.error;
                             alertMessage.style.display = "block";
@@ -90,9 +103,9 @@ function showLoginError() {
     });
 
 }
-
-window.addEventListener("DOMContentLoaded", function() {
-    showLoginError();
-});
+            // Add an event listener to execute showLoginError when the DOM is loaded
+            window.addEventListener("DOMContentLoaded", function() {
+                showLoginError();
+            });
 
 

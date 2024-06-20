@@ -45,17 +45,12 @@ abstract class AbstractController
         header("Location: $route");// Send a header to redirect to the specified route
     }
 
-    // Method to render JSON data using Twig
-    // protected function renderJson(string $template, array $data) : void
-    // {
-    //     $jsonData = json_encode($data);// Encode the data array to JSON
-
-    //     echo $this->twig->render($template, ['json_data' => $jsonData]);  // Render the template with the JSON data
-    // }
-    
+    // Protected method to send a JSON response
     protected function renderJson(array $data) : void
     {   
+        // Set the Content-Type header to indicate the response is JSON
         header('Content-Type: application/json');
+        // Encode the data array to JSON and output it
         echo json_encode($data);
         
     }
