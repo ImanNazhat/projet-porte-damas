@@ -29,6 +29,7 @@ abstract class AbstractController
         
         $twig->addGlobal('csrf_token', $_SESSION["csrf-token"]);// Add a global CSRF token to Twig
         
+        
         $this->twig = $twig;// Assign Twig environment to the class property
     }
     
@@ -53,8 +54,10 @@ abstract class AbstractController
     // }
     
     protected function renderJson(array $data) : void
-    {
+    {   
+        header('Content-Type: application/json');
         echo json_encode($data);
+        
     }
     
     // Method to send an email
@@ -89,8 +92,9 @@ abstract class AbstractController
             
             // Set email subject and body
             $mail->Subject = 'Confirmation de réservation';
-            $mail->Body    = "Bonjour $name,<br><br>Votre réservation a été confirmée.<br><br>Merci de votre réservation.";
-            
+            $mail->Body = "Bonjour $name,<br><br>
+                            Votre réservation pour <strong> $nombrePersonnes personne/s </strong> le <strong> $date </strong> à <strong> $heure </strong> a été confirmée avec succès.<br><br>  
+                            Merci pour votre réservation.";
             // Send the email
             $mail->send();
             

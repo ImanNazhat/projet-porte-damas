@@ -45,50 +45,54 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 });
 
-// function showLoginError() {
-//     const loginForm = document.getElementById("login-form");
-//     const alertMessage = document.querySelector(".alert-message");
-//     const errorMessageElement = document.getElementById("error-message");
+function showLoginError() {
+    const loginForm = document.getElementById("login-form");
+    const alertMessage = document.querySelector(".alert-message");
+    const errorMessageElement = document.getElementById("error-message");
+   
 
-//     loginForm.addEventListener("submit", handleFormSubmit);
+    loginForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(loginForm);
+        const options = {
+            method: "POST",
+            body: formData,
+        };
 
-//     async function handleFormSubmit(event) {
-//         event.preventDefault();
+        fetch("index.php?route=check-connexion", options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Réponse du serveur non valide');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.success) {
+                    
+                    if (data.user !== null ) {
+                            window.location.href = "index.php?route=user"; 
+                        } else {
+                            
+                            console.error("user non géré:", data.user);
+                        }
+                }    
+                else{
+                            errorMessageElement.textContent = data.error;
+                            alertMessage.style.display = "block";
+                        }
+            })
+            .catch(error => {
+                console.error("Erreur lors de la vérification de la connexion:", error);
+                errorMessageElement.textContent = "Une erreur s'est produite lors de la vérification de la connexion.";
+                alertMessage.style.display = "block";
+            });
+    });
 
-//         const formData = new FormData(loginForm);
+}
 
-//         try {
-//             const response = await fetch("index.php?route=checkConnexion", {
-//                 method: "POST",
-//                 body: formData,
-//                 headers: {
-//                     "Accept": "application/json", // Indique que le client attend une réponse JSON
-//                     // Vous pouvez ajouter d'autres en-têtes si nécessaire
-//                 }
-//             });
+window.addEventListener("DOMContentLoaded", function() {
+    showLoginError();
+});
 
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
 
-//             const data = await response.json();
-//             console.log('Response Data:', data);
-
-//             if (data.success) {
-//                 window.location.href = data.redirect;
-//             } else {
-//                 showErrorMessage(data.error);
-//             }
-//         } catch (error) {
-//             console.error("Fetch Error:", error);
-//             showErrorMessage("Une erreur s'est produite lors de la vérification de la connexion.");
-//         }
-//     }
-
-//     function showErrorMessage(message) {
-//         errorMessageElement.textContent = message;
-//         alertMessage.style.display = "block";
-//     }
-// }
-
-// window.addEventListener("DOMContentLoaded", showLoginError);
