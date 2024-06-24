@@ -4,8 +4,9 @@ class AdminController extends AbstractController
 {   
     // Method to manage reviews in the admin panel
     public function AdminAvis() : void 
-    {
-        // Create a new instance of AvisManager
+     {
+        if (isset($_SESSION["user"])){
+             // Create a new instance of AvisManager
         $avis = new AvisManager;
         
         // Retrieve all reviews
@@ -15,51 +16,75 @@ class AdminController extends AbstractController
         $this->render("admin/admin-avis/admin-avis.html.twig", [
             "aviss" => $aviss
         ]);
-    }
+        
+        }
+        else{
+            $this->redirect("index.php?route=Connexion");
+        }
+    } 
     
     // Method to manage reservations in the admin panel
     public function AdminReservation() : void 
     {
-    
+        if (isset($_SESSION["user"])){
         $reservation = new ReservationManager;
         
        
         $reservations = $reservation->findAll();
         
+    
        
         $this->render("admin/admin-reservation/admin-reservation.html.twig", [
             "reservations" => $reservations
-        ]); 
+        ]);
+        }
+        else{
+            $this->redirect("index.php?route=Connexion");
+        }
     } 
-    
+ 
     // Method to manage the menu in the admin panel
     public function AdminMenu() : void
+    
     {
+        if (isset($_SESSION["user"])) 
+        {
+           $menu = new MenuManager;
+            
+          
+            $menus = $menu->findAll();
+            
        
-        $menu = new MenuManager;
-        
-      
-        $menus = $menu->findAll();
-        
-   
-        $this->render("admin/admin-menu/admin-menu.html.twig", [
-            "menus" => $menus
-        ]);
+            $this->render("admin/admin-menu/admin-menu.html.twig", [
+                "menus" => $menus
+            ]);
+            
+            }
+            
+            else{
+                $this->redirect("index.php?route=Connexion");
+            }
     } 
     
     // Method to manage users in the admin panel
     public function User() : void
     {
-      
-        $user = new UserManager;
-        
-    
-        $users = $user->findAll();
-        
-      
-        $this->render("admin/user.html.twig", [
-            "users" => $users
-        ]);
+        if (isset($_SESSION["user"])) 
+        {
+                $user = new UserManager;
+                
+            
+                $users = $user->findAll();
+                
+              
+                $this->render("admin/user.html.twig", [
+                    "users" => $users
+                ]);
+            }
+            
+            else{
+                $this->redirect("index.php?route=Connexion");
+            }
     } 
     
     // Method to render the create user template

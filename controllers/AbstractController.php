@@ -50,7 +50,7 @@ abstract class AbstractController
     {   
         // Set the Content-Type header to indicate the response is JSON
         header('Content-Type: application/json');
-        // Encode the data array to JSON and output it
+        
         echo json_encode($data);
         
     }
@@ -87,9 +87,7 @@ abstract class AbstractController
             
             // Set email subject and body
             $mail->Subject = 'Confirmation de réservation';
-            $mail->Body = "Bonjour $name,<br><br>
-                            Votre réservation pour <strong> $nombrePersonnes personne/s </strong> le <strong> $date </strong> à <strong> $heure </strong> a été confirmée avec succès.<br><br>  
-                            Merci pour votre réservation.";
+            $mail->Body = "Bonjour $name,<br><br>Votre réservation a été confirmée.<br><br>Merci de votre réservation.";
             // Send the email
             $mail->send();
             

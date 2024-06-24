@@ -48,8 +48,11 @@ class Router {
 
                  else if($get["route"] === "admin-reservation") {
                     
+                    
                     $adminController->AdminReservation();
                 }
+                
+               
                 else if($get["route"] === "check-creer-reservation"){
                     
                     $authController->checkCreateReservation();
