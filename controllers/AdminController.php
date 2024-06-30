@@ -49,14 +49,44 @@ class AdminController extends AbstractController
     {
         if (isset($_SESSION["user"])) 
         {
-           $menu = new MenuManager;
+            $menuManager = new MenuManager();
+            $ingredientManager = new IngredientManager();
+                            
+            $menus = $menuManager->findAll();
+                         
+            $menusWithIngredients = [];
+                         
+            foreach ($menus as $menu) {
+                $ingredients = $ingredientManager->findIngredientByMenuId($menu->getId());
+                $menusWithIngredients[] = [
+                    'menu' => $menu,
+                    'ingredients' => $ingredients
+                ];
+        }
+
+        $this->render("admin/admin-menu/admin-menu.html.twig", [
+            "menusWithIngredients" => $menusWithIngredients
+        ]);
+            }
+            
+            else{
+                $this->redirect("index.php?route=Connexion");
+            }
+    } 
+    
+    public function AdminIngredient() : void
+    
+    {
+        if (isset($_SESSION["user"])) 
+        {
+             $ingredient = new IngredientManager;
             
           
-            $menus = $menu->findAll();
+            $ingredients = $ingredient->findAll();
             
        
-            $this->render("admin/admin-menu/admin-menu.html.twig", [
-                "menus" => $menus
+            $this->render("admin/admin-menu/admin-ingredient.html.twig", [
+                "ingredients" => $ingredients
             ]);
             
             }
@@ -65,7 +95,6 @@ class AdminController extends AbstractController
                 $this->redirect("index.php?route=Connexion");
             }
     } 
-    
     // Method to manage users in the admin panel
     public function User() : void
     {

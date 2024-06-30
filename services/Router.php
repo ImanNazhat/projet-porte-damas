@@ -11,6 +11,7 @@ class Router {
                $adminController = new AdminController();
                $avisController = new AvisController();
                $categorieController = new CategorieController();
+               $ingredientController = new IngredientController();
                  
                 if (isset($get["route"]))
                 {
@@ -158,6 +159,45 @@ class Router {
                     else
                     {
                       echo "menu_id n'existes pas pour la route admin-supprimer-menu";
+                    }
+                }
+//*******************************admin ingredient*********************************************************//  
+
+                    else if($get["route"] === "admin-ingredient") {
+                    
+                    $adminController->AdminIngredient();
+                }
+                
+                else if($get["route"] === "admin-creer-ingredient"){
+                    
+                    $ingredientController->createIngredient();
+                }
+                else if($get["route"] === "admin-check-creer-ingredient"){
+                    
+                    $ingredientController->checkCreateIngredient();
+                }
+                else if($get["route"] === "admin-modifier-ingredient"){
+                    
+                    if (isset($get["ingredient_id"])) {
+                        
+                    $ingredientId = (int)$get["ingredient_id"];
+                    $ingredientController->editIngredient($ingredientId);
+                    }
+                }
+                else if($get["route"] === "admin-check-modifier-ingredient"){
+                    
+                    $ingredientController->checkEditIngredient();
+                }
+                else if($get["route"] === "admin-supprimer-ingredient"){
+                    
+                    if (isset($get["ingredient_id"])) {
+                        
+                    $ingredientId = (int)$get["ingredient_id"];
+                    $ingredientController->delete($ingredientId);
+                    }
+                    else
+                    {
+                      echo "ingredient_id n'existes pas pour la route admin-supprimer-ingredient";
                     }
                 }
 //*******************************categories*********************************************************// 

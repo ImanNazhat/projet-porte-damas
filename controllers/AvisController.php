@@ -31,9 +31,9 @@ class AvisController extends AbstractController
                     if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["comment"])) {
                        
                         // Sanitize and validate form fields 
-                        $username = htmlspecialchars(trim($_POST["username"]));
+                        $username = htmlspecialchars(trim($_POST["username"]), ENT_QUOTES, 'UTF-8');
                         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-                        $comment = htmlspecialchars(trim($_POST["comment"]));
+                        $comment = htmlspecialchars(trim($_POST["comment"]), ENT_QUOTES, 'UTF-8');
                         
                         if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($username) && !empty($comment)) {
                             

@@ -4,9 +4,7 @@ window.addEventListener("DOMContentLoaded", function(){
     // Get the modals
     const deleteModal = document.getElementById('deleteModal');
     const editModal = document.getElementById('editModal');
-    const showViande = document.getElementById("show-plats-de-viande");
-    const showVegetarien = document.getElementById("show-plats-vegetarien");
-    const showDessert = document.getElementById("show-desserts");
+   
 
     // Check if the delete modal exists
     if (deleteModal) {
@@ -43,9 +41,25 @@ window.addEventListener("DOMContentLoaded", function(){
             });
         });
     }
+    
+    
+  
+    const selectElement = document.getElementById('ingredients');
+    const inputElement = document.getElementById('selectedIngredients');
+
+    // Mise à jour de l'input text avec les options sélectionnées
+    selectElement.addEventListener('change', () => {
+        const selectedIngredients = Array.from(selectElement.selectedIngredients).map(ingredient => ingredient.text);
+        inputElement.value = selectedIngredients.join(', ');
+    });
+
+
 });
 
-function showLoginError() {
+
+       
+
+function LoginError() {
     const loginForm = document.getElementById("login-form");
     const alertMessage = document.querySelector(".alert-message");
     const errorMessageElement = document.getElementById("error-message");
@@ -105,7 +119,7 @@ function showLoginError() {
 }
             // Add an event listener to execute showLoginError when the DOM is loaded
             window.addEventListener("DOMContentLoaded", function() {
-                showLoginError();
+                LoginError();
             });
 
 

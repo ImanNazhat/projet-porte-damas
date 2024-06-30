@@ -19,75 +19,87 @@
 			        </ul>
 			    </nav>
    
-    
-		 <ul>
-		    {% for menu in  menus %}
-		    	<li>
-		    		<div>
-		    			<figre>
-	                            <img src="{{  menu.picture|escape }}" width="150"/>
-	                    </figre>
-	                     <section>      
-				            <h4>{{  menu.name|escape }}</h4>
-				           
-				            <p>{{  menu.discription|escape }}</p>
-			             </section> 
-			        </div>
-		         </li>
-		     {% endfor %}
-		  </ul> 
-		 
+				 <ul>
+				   {% for menuWithIngredients in menusWithIngredients %}
+				    	<li>
+				    		<div>
+				    			<figure>
+			                            <img src="{{ menuWithIngredients.menu.picture|escape }}" width="150"/>
+			                    </figure>
+			                     <section>      
+						            <h4>{{ menuWithIngredients.menu.name|escape }}</h4>
+						            
+						            <ul>
+		                            {% for ingredient in menuWithIngredients.ingredients %}
+		                                <li>{{ ingredient.name|escape }}</li>
+		                            {% endfor %}
+		                        </ul>
+					             </section> 
+					        </div>
+				         </li>
+				     {% endfor %}
+				  </ul> 
+				 
 
-		 <ul>
-		    {% for meat in  meats %}
-		    	<li>
-		    	  <div>
-		    			<figre>
-	                            <img src="{{  meat.picture|escape }}" width="150"/>
-	                    </figre>
-	                     <section>      
-				            <h4>{{  meat.name|escape }}</h4>
-				           
-				            <p>{{  meat.description|escape }}</p>
-			             </section> 
-			        </div>
-		         </li>
-		     {% endfor %}
-		  </ul>  
+					 <ul>
+					      {% for menuMeats in menusMeats %}
+			            <li>
+			                <div>
+			                    <figure>
+			                        <img src="{{ menuMeats.meat.picture|escape }}" width="150"/>
+			                    </figure>
+			                    <section>
+			                        <h4>{{ menuMeats.meat.name|escape }}</h4>
+			                            <ul>
+			                                {% for ingredient in menuMeats.ingredients %}
+			                                    <li>{{ ingredient.name|escape }}</li>
+			                            {% endfor %}
+			                        </ul>
+						             </section> 
+						        </div>
+					         </li>
+					     {% endfor %}
+					  </ul>  
 		  
-		   <ul>
-		    {% for vegetarian in  vegetarians %}
-		    	<li>
-		    		<div>
-		    			<figre>
-	                            <img src="{{  vegetarian.picture|escape }}" width="150"/>
-	                    </figre>
-	                     <section>      
-				            <h4>{{  vegetarian.name|escape }}</h4>
-				           
-				            <p>{{  vegetarian.description|escape }}</p>
-			             </section> 
-			         </div>
-		         </li>
-		     {% endfor %}
-		  </ul>  
-		  
-		   <ul>
-		    {% for dessert in  desserts %}
-		    	<li>
-		    		<div>
-		    			<figre>
-	                            <img src="{{  dessert.picture|escape }}" width="150"/>
-	                    </figre>
-	                     <section>      
-				            <h4>{{  dessert.name|escape }}</h4>
-				           
-				            <p>{{  dessert.description|escape }}</p>
-			             </section> 
-			         </div>
-		         </li>
-		     {% endfor %}
-		  </ul>  
+				  <ul>
+		            {% for menuVegetarians in menusVegetarians %}
+		            <li>
+		                <div>
+		                    <figure>
+		                        <img src="{{ menuVegetarians.vegetarian.picture|escape }}" width="150"/>
+		                    </figure>
+		                    <section>
+		                        <h4>{{ menuVegetarians.vegetarian.name|escape }}</h4>
+		                            <ul>
+		                                {% for ingredient in menuVegetarians.ingredients %}
+		                                    <li>{{ ingredient.name|escape }}</li>
+		                            {% endfor %}
+		                        </ul>
+					             </section> 
+					        </div>
+				         </li>
+				     {% endfor %}
+				  </ul> 
+				  
+				   <ul>
+				     {% for menuDesserts in menusDesserts %}
+		            <li>
+		                <div>
+		                    <figure>
+		                        <img src="{{ menuDesserts.dessert.picture|escape }}" width="150"/>
+		                    </figure>
+		                    <section>
+		                        <h4>{{ menuDesserts.dessert.name|escape }}</h4>
+		                            <ul>
+		                                {% for ingredient in menuDesserts.ingredients %}
+		                                    <li>{{ ingredient.name|escape }}</li>
+		                            {% endfor %}
+		                        </ul>
+					             </section> 
+					        </div>
+				         </li>
+				     {% endfor %}
+				  </ul>  
 </main>	
 
 {% endblock %}

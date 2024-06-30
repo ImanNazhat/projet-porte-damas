@@ -12,4 +12,9 @@ class PageController extends AbstractController
                      $this->render("main/legal.html.twig", []);
                     }
                     
+                    // Method to display the home page             
+                    public function home() : void
+                    {
+                        $this->render("home.html.twig" , []);
+                    }
                 }

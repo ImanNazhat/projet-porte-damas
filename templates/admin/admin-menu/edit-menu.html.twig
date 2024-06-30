@@ -12,19 +12,23 @@
                     </label>
                     <input id="name" name="name" type="text" class="form-control" value="{{ menu.name }}"/>
                 </fieldset>
-                  <fieldset class="mb-4">
-                    <label for="text" class="form-label">
-                        Description
-                    </label>
-                    <input id="Description" name="Description" type="text" class="form-control" value="{{ menu.discription }}" />
+                
+                <fieldset class="mb-4">
+                    <label for="ingredients" class="form-label">Ingredients</label>
+                    <div id="ingredients">
+                        {% for ingredient in ingredients %}
+                            <input type="checkbox" name="ingredients[]" value="{{ ingredient.id }}"> {{ ingredient.name }}<br>
+                        {% endfor %}
+                    </div>
                 </fieldset>
-<fieldset class="mb-4">
+        
+                <fieldset class="mb-4">
                     <label for="text" class="form-label">
                         Image 
                     </label>
                     <input id="image" name="image" type="file" class="form-control" value="{{ menu.picture }}" />
                 </fieldset>
-<fieldset class="mb-4">
+                <fieldset class="mb-4">
                     <label for="select" class="form-label">
                         Vegetarian
                     </label>

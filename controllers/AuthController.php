@@ -20,22 +20,22 @@ class AuthController extends AbstractController
                          if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["telephone"]) && isset($_POST["nombre_personnes"]) && isset($_POST["date"]) && isset($_POST["heure"]) && isset($_POST["message"]))
                             {
                                  // Retrieve the form field values
-                                $name = $_POST["name"];
-                                $email = $_POST["email"];
-                                $telephone = $_POST["telephone"];
-                                $nombrePersonnes = $_POST["nombre_personnes"];
-                                $date = $_POST["date"];
-                                $heure = $_POST["heure"];
-                                $message = $_POST["message"];
+                                $name = htmlspecialchars(trim($_POST["name"]), ENT_QUOTES, 'UTF-8');
+                                $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+                                $telephone = htmlspecialchars(trim($_POST["telephone"]), ENT_QUOTES, 'UTF-8');
+                                $nombrePersonnes = htmlspecialchars(trim($_POST["nombre_personnes"]), ENT_QUOTES, 'UTF-8');
+                                $date = htmlspecialchars(trim($_POST["date"]), ENT_QUOTES, 'UTF-8');
+                                $heure = htmlspecialchars(trim($_POST["heure"]), ENT_QUOTES, 'UTF-8');
+                                $message = htmlspecialchars(trim($_POST["message"]), ENT_QUOTES, 'UTF-8');
                                 
                                 // Check if any of the fields are empty
-                                if (empty($name) || empty($email) || empty($telephone) || empty($nombrePersonnes) || empty($date) || empty($heure)) {
+                                if (filter_var($email, FILTER_VALIDATE_EMAIL) || empty($name) || empty($telephone) || empty($nombrePersonnes) || empty($date) || empty($heure)) {
                                     
                                     // Set an error message in the session
-                                    $_SESSION["error-message-o"] = "Tous les champs sont obligatoires. Veuillez les remplir.";
+                                    $_SESSION["error-message"] = "Tous les champs sont obligatoires. Veuillez les remplir.";
                                      // Render the page with the error message
-                                    $this->render("main/reserver.html.twig", ['error' => $_SESSION["error-message-o"]]);
-                                    unset($_SESSION["error-message-o"]);
+                                    $this->render("main/reserver.html.twig", ['error' => $_SESSION["error-message"]]);
+                                    unset($_SESSION["error-message"]);
                                     return;
                                 }
                                 
@@ -99,7 +99,7 @@ class AuthController extends AbstractController
                                 }
                                 
                             else {
-                                    $this->renderJson(['success' => false, 'error' => 'Email incorrect. Veuillez Réessayer.']);
+                                    $this->renderJson(['success' => false, 'error' => 'Email incorrect. Accès autoriser juste pour les admins.']);
                                     return;
                                 }
                             }

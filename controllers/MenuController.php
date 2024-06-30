@@ -6,34 +6,44 @@ class MenuController extends AbstractController
                     // Method to display all menus
                     public function Menu() : void
                     {
-                      $menu = new MenuManager;
-                        
-                        $menus = $menu->findAll();
-                        
-                     $this->render("main/menu.html.twig", [
-                          "menus" => $menus
-                          ]);
+                        $menuManager = new MenuManager();
+                        $ingredientManager = new IngredientManager();
+                                        
+                        $menus = $menuManager->findAll();
+                                     
+                        $menusWithIngredients = [];
+                                     
+                        foreach ($menus as $menu) {
+                            $ingredients = $ingredientManager->findIngredientByMenuId($menu->getId());
+                            $menusWithIngredients[] = [
+                                'menu' => $menu,
+                                'ingredients' => $ingredients
+                            ];
+                    }
+            
+                    $this->render("main/menu.html.twig", [
+                        "menusWithIngredients" => $menusWithIngredients
+                    ]);
                     }
                     
-                    // Method to display the home page             
-                    public function home() : void
-                    {
-                        $this->render("home.html.twig" , []);
-                    }
                     
                     // Method to display the create menu page
                     public function create() : void{
-                        $this->render("admin/admin-menu/create-menu.html.twig" , []);
+                        
+                         $ingredient = new IngredientManager();
+                         $ingredients = $ingredient->findAll(); 
+                         $this->render("admin/admin-menu/create-menu.html.twig", ['ingredients' => $ingredients]);
+                        
                     }
                     
                      // Method to check and create a menu
                     public function checkCreate() : void {
                         
                         // Check if the form is submitted and all fields are present
-                        if (isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"])) {
+                        if (isset($_POST) && isset($_POST["name"]) && isset($_FILES["image"]) && isset($_POST["select"])) {
                             $name = $_POST["name"];
-                            $description = $_POST["Description"];
                             $select = $_POST["select"];
+                            $ingredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : [];
                             
                             // Handle the uploaded file
                             $image_tmp_name = $_FILES["image"]["tmp_name"];
@@ -45,13 +55,13 @@ class MenuController extends AbstractController
                             $file_extension = pathinfo($image_name, PATHINFO_EXTENSION);
                             if (!in_array($file_extension, $allowed_types)) {
                                 echo "Type de fichier non autorisé.";
-                                return;
+                                
                             }
                     
                             // Check the file size (limited to 10MB, for example)
                             if ($_FILES["image"]["size"] > 10000000) {
                                 echo "La taille du fichier est trop grande.";
-                                return;
+                               
                             }
                     
                             // Rename the file to avoid conflicts
@@ -61,12 +71,15 @@ class MenuController extends AbstractController
                             if (move_uploaded_file($image_tmp_name, $target_file)) {
                                 
                                 // The file has been successfully uploaded, you can now create the Menu object
-                                $menu = new Menu($name, $description, $target_file ,$select);
+                                $menu = new Menu($name, $target_file ,$select);
                                 $menuManager = new MenuManager();
                                 $createdMenu = $menuManager->create($menu);
                                 
-                                // Render the admin menu page
-                                $this->render("admin/admin-menu/admin-menu.html.twig" , []);
+                                foreach ($ingredients as $ingredientId) {
+                                        $menuManager->addIngredientToMenu($createdMenu->getId(), $ingredientId);
+                                    }
+                                  
+                                $this->redirect("index.php?route=admin-menu");
                             } 
                             else {
                                 echo "Une erreur s'est produite lors du téléchargement du fichier.";
@@ -81,21 +94,23 @@ class MenuController extends AbstractController
                         
                         $editMenu = $menuManager->findOne($menuId);
                         
-                        
-                        $this->render("admin/admin-menu/edit-menu.html.twig" , ["menu" => $editMenu]);
-                         
+                         $ingredient = new IngredientManager();
+                         $ingredients = $ingredient->findAll(); 
+                         $this->render("admin/admin-menu/edit-menu.html.twig", [
+                             'ingredients' => $ingredients,
+                             'menu' => $editMenu
+                             ]);
                     }
                     
                     // Method to check and edit a menu
                     public function checkEdit() : void {
                         
-                    if(isset($_POST['submit']) && isset($_POST["name"]) && isset($_POST["Description"]) && isset($_FILES["image"]) && isset($_POST["select"]))
+                    if(isset($_POST) && isset($_POST["name"]) && isset($_FILES["image"]) && isset($_POST["select"]))
                             {
                                 $name = $_POST["name"];
-                                $description = $_POST["Description"];
                                 $select = $_POST["select"];
                                 $id = $_POST["id"];
-                                
+                                $ingredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : [];
                                 
                                 $image_tmp_name = $_FILES["image"]["tmp_name"];
                                 $image_name = basename($_FILES["image"]["name"]);
@@ -122,7 +137,7 @@ class MenuController extends AbstractController
                             
                                 if(move_uploaded_file($image_tmp_name, $target_file)) {
                                     
-                                $menu = new Menu($name, $description, $target_file,$select);
+                                $menu = new Menu($name, $target_file,$select);
                                 
                                 $menu->setId($id);
                                 
@@ -130,14 +145,13 @@ class MenuController extends AbstractController
                                 
                                 $editMenu = $menuManager->edit($menu);
                                 
-                                $menu = new MenuManager;
-                        
-                                $menus = $menu->findAll();
+                                
+                                foreach ($ingredients as $ingredientId) {
+                                        $menuManager->addIngredientToMenu($editMenu->getId(), $ingredientId);
+                                    }
                                     
-                                 $this->render("admin/admin-menu/admin-menu.html.twig", [
-                                      "menus" => $menus
-                                      ]);
-                                            } 
+                                $this->redirect("index.php?route=admin-menu");
+                      } 
                                 else {
                                     echo "Une erreur s'est produite lors du téléchargement du fichier.";
                                 }
@@ -154,7 +168,8 @@ class MenuController extends AbstractController
                         
                         $menus = $menu->findAll();
                     
-                        $this->render("admin/admin-menu/admin-menu.html.twig" , ["menus" => $menus]);
+                        $this->redirect("index.php?route=admin-menu");
                     }
                     
                 }
+                
