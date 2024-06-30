@@ -80,15 +80,6 @@ class MenuManager extends AbstractManager
                     $deleteOld = $this->db->prepare('DELETE FROM dishes_ingredients WHERE dishes_id=:dishes_id');
                     $deleteOld->execute(["dishes_id" => $menu->getId()]);
             
-                    // Ajouter les nouveaux ingrédients
-                    $insertNew = $this->db->prepare('INSERT INTO dishes_ingredients (dishes_id, ingredientes_id) VALUES (:dishes_id, :ingredientes_id)');
-                    foreach ($ingredient->getId() as $ingredientId) {
-                        $insertNew->execute([
-                            "dishes_id" => $menu->getId(),
-                            "ingredientes_id" => $ingredientId
-                        ]);
-                    }
-
                     return $menu;
                 }
                 
