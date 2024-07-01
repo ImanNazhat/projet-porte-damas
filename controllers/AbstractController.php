@@ -15,7 +15,7 @@ abstract class AbstractController
     private \Twig\Environment $twig;
     private PHPMailer $mail;
     
-    // Constructor method
+    
     public function __construct()
     {
         $loader = new \Twig\Loader\FilesystemLoader('templates'); // Set up Twig template loader
@@ -36,7 +36,7 @@ abstract class AbstractController
     // Method to render a Twig template
     protected function render(string $template, array $data) : void
     {
-        echo $this->twig->render($template, $data); // Output the rendered template
+        echo $this->twig->render($template, $data); 
     }
 
     // Method to redirect to a different route
@@ -58,7 +58,7 @@ abstract class AbstractController
     // Method to send an email
     protected function sendEmail(string $email, string $name) : bool
     {
-        // Create a new PHPMailer instance
+        
         $mail = new PHPMailer(true);
         
         try {

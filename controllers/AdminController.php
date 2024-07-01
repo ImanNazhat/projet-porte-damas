@@ -5,17 +5,17 @@ class AdminController extends AbstractController
     // Method to manage reviews in the admin panel
     public function AdminAvis() : void 
      {
-        if (isset($_SESSION["user"])){
-             // Create a new instance of AvisManager
-        $avis = new AvisManager;
-        
-        // Retrieve all reviews
-        $aviss = $avis->findAll();
-        
-        // Render the admin reviews template with the retrieved reviews
-        $this->render("admin/admin-avis/admin-avis.html.twig", [
-            "aviss" => $aviss
-        ]);
+            if (isset($_SESSION["user"])){
+                 // Create a new instance of AvisManager
+            $avis = new AvisManager;
+            
+            // Retrieve all reviews
+            $aviss = $avis->findAll();
+            
+            // Render the admin reviews template with the retrieved reviews
+            $this->render("admin/admin-avis/admin-avis.html.twig", [
+                "aviss" => $aviss
+            ]);
         
         }
         else{
@@ -27,16 +27,16 @@ class AdminController extends AbstractController
     public function AdminReservation() : void 
     {
         if (isset($_SESSION["user"])){
-        $reservation = new ReservationManager;
+            $reservation = new ReservationManager;
+            
+           
+            $reservations = $reservation->findAll();
+            
         
-       
-        $reservations = $reservation->findAll();
-        
-    
-       
-        $this->render("admin/admin-reservation/admin-reservation.html.twig", [
-            "reservations" => $reservations
-        ]);
+           
+            $this->render("admin/admin-reservation/admin-reservation.html.twig", [
+                "reservations" => $reservations
+            ]);
         }
         else{
             $this->redirect("index.php?route=Connexion");
@@ -64,9 +64,9 @@ class AdminController extends AbstractController
                 ];
         }
 
-        $this->render("admin/admin-menu/admin-menu.html.twig", [
-            "menusWithIngredients" => $menusWithIngredients
-        ]);
+                $this->render("admin/admin-menu/admin-menu.html.twig", [
+                    "menusWithIngredients" => $menusWithIngredients
+                ]);
             }
             
             else{

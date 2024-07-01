@@ -28,16 +28,7 @@ class AuthController extends AbstractController
                                 $heure = htmlspecialchars(trim($_POST["heure"]), ENT_QUOTES, 'UTF-8');
                                 $message = htmlspecialchars(trim($_POST["message"]), ENT_QUOTES, 'UTF-8');
                                 
-                                // Check if any of the fields are empty
-                                if (filter_var($email, FILTER_VALIDATE_EMAIL) || empty($name) || empty($telephone) || empty($nombrePersonnes) || empty($date) || empty($heure)) {
-                                    
-                                    // Set an error message in the session
-                                    $_SESSION["error-message"] = "Tous les champs sont obligatoires. Veuillez les remplir.";
-                                     // Render the page with the error message
-                                    $this->render("main/reserver.html.twig", ['error' => $_SESSION["error-message"]]);
-                                    unset($_SESSION["error-message"]);
-                                    return;
-                                }
+                                
                                 
                                 // Create a new Reservation object with the form data
                                 $reservation = new Reservation($name, $email, $telephone, $nombrePersonnes, $date, $heure, $message);

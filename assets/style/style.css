@@ -131,21 +131,6 @@ nav a {
   padding:4rem;
 }
 
-/*************************************** Error message style ************************************************/
-
-.error-message {
-  padding: 10px;
-  background-color: #242743;
-  font-size: 20px;
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-  position: fixed;
-  top: 80px;
-  right: 0;
-  z-index: 9999;
-  color: #E6D5B1;
-}
 
 /*************************************** Page de menu style ************************************************/
 
@@ -304,13 +289,14 @@ nav a {
   border-radius: 5px;
   position: relative;
 }
-
 .close-btn-error {
   position: absolute;
   top: 5px;
   right: 10px;
   cursor: pointer;
 }
+
+
 
 /*************************************** Footer style ************************************************/
 
