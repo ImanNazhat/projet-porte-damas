@@ -6,7 +6,8 @@ class AdminController extends AbstractController
     public function AdminAvis() : void 
      {
             if (isset($_SESSION["user"])){
-                 // Create a new instance of AvisManager
+                
+            // Create a new instance of AvisManager
             $avis = new AvisManager;
             
             // Retrieve all reviews
@@ -53,11 +54,18 @@ class AdminController extends AbstractController
             $ingredientManager = new IngredientManager();
                             
             $menus = $menuManager->findAll();
-                         
+                    
+                    
+             // Prepare array to store menus with their ingredients     
             $menusWithIngredients = [];
-                         
+             
+             // Loop through each menu to find and store its ingredients            
             foreach ($menus as $menu) {
+                
+                // Retrieve ingredients for the current menu using its ID
                 $ingredients = $ingredientManager->findIngredientByMenuId($menu->getId());
+                
+                 // Store the current menu and its ingredients in $menusWithIngredients array
                 $menusWithIngredients[] = [
                     'menu' => $menu,
                     'ingredients' => $ingredients
@@ -121,10 +129,10 @@ class AdminController extends AbstractController
         $this->render("admin/create-user.html.twig", []);
     }
     
-    // Method to handle user creation
+    
     public function checkCreateUser() : void {
         
-        // Check if the form is submitted and all required fields are set
+        
         if(isset($_POST['submit']) && isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm-password"])) { 
        
             // Check if the passwords match
@@ -216,13 +224,7 @@ class AdminController extends AbstractController
             // Update the user information
             $editUser = $userManager->editUser($user);
             
-            // Retrieve all users
-            $users = $userManager->findAll();
-            
-            // Render the admin users template with the retrieved users
-            $this->render("admin/user.html.twig", [
-                "users" => $users
-            ]);
+             $this->redirect("index.php?route=user");
         }
         else {
             // Handle error if passwords do not match
@@ -243,12 +245,7 @@ class AdminController extends AbstractController
         // Delete the user
         $userManager->delete($userId);
         
-         $users = $userManager->findAll();
-         
-        $this->render("admin/user.html.twig", [
-                "users" => $users
-            ]);
-        
+        $this->redirect("index.php?route=user");
     }
 }
 ?>

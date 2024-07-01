@@ -46,13 +46,7 @@ class AvisController extends AbstractController
                            // Add the review to the database
                             $createdAvis = $avisManager->createAvis($avis);
                             
-                            $avis = new AvisManager;
-                        
-                            $aviss = $avis->findAll();
-                        
-                             $this->render("main/avis.html.twig", [
-                                 "aviss" => $aviss
-                                 ]);
+                            $this->redirect("index.php?route=Votre-avis");
                         } 
                         else {
                             echo "Données invalides.";
@@ -68,13 +62,8 @@ class AvisController extends AbstractController
                         // Delete the review specified by its ID
                         $avisManager->delete($avisId);
                         
-                        $avis = new AvisManager;
+                         $this->redirect("index.php?route=admin-avis");
                         
-                        $aviss = $avis->findAll();
-                        
-                         $this->render("admin/admin-avis/admin-avis.html.twig", [
-                             "aviss" => $aviss
-                             ]);
                         }
                      
                 }

@@ -29,7 +29,6 @@ class AuthController extends AbstractController
                                 $message = htmlspecialchars(trim($_POST["message"]), ENT_QUOTES, 'UTF-8');
                                 
                                 
-                                
                                 // Create a new Reservation object with the form data
                                 $reservation = new Reservation($name, $email, $telephone, $nombrePersonnes, $date, $heure, $message);
                                 
@@ -112,7 +111,7 @@ class AuthController extends AbstractController
                         
                         session_destroy();
                         
-                        $this->render("main/connexion.html.twig", ['message' => 'Vous avez été déconnecté avec succès.']);
+                         $this->redirect("index.php?route=Connexion");
                         
                     }
 }

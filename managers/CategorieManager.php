@@ -40,53 +40,5 @@ class CategorieManager extends AbstractManager
         return null;
     }
     
-    // public function findMeat() : array
-    // {
-    //     $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:categories_id');
-    //     $query->execute(array(':categories_id' => "1"));
-    //     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    //     $meats = [];
-        
-    //     foreach($result as $item)
-    //     {
-    //         $dish = new Menu($item["name"], $item["picture"],$item["categories_id"]);
-    //         $dish->setId($item["id"]);  
-    //         $meats[] = $item;
-    //     }
-    //     return $meats;
-       
-    // }
-    
-    // public function findVegetarian() : array
-    // {
-    //   $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:categories_id');
-    //     $query->execute(array(':categories_id' => "2"));
-    //     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    //     $vegetarian = [];
-        
-    //     foreach($result as $item)
-    //     {
-    //         $dish = new Menu($item["name"], $item["picture"],$item["categories_id"]);
-    //         $dish->setId($item["id"]);  
-    //         $vegetarians[] = $item;
-    //     }
-    //     return $vegetarians;
-    // }
-    
-    // public function findDessert() : array
-    // {
-    //     $query = $this->db->prepare('SELECT * FROM dishes WHERE categories_id=:categories_id');
-    //     $query->execute(array(':categories_id' => "3"));
-    //     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    //     $dessert = [];
-        
-    //     foreach($result as $item)
-    //     {
-    //         $dish = new Menu($item["name"], $item["picture"],$item["categories_id"]);
-    //         $dish->setId($item["id"]);
-    //         $dessert[] = $item;
-    //     }
-    //     return $dessert;
-       
-    // }
+   
 }
